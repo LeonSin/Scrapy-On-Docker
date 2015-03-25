@@ -1,0 +1,2575 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>文章 - DockerOne</title>
+<meta name="keywords" content="Docker学习,Docker教程,Docker与CoreOS,kubernetes,CoreOS,Deis,Weave,namespace" />
+<meta name="description" content="DockerOne，为技术人员提供最专业的Docker交流平台。"  />
+<base href="http://www.dockerone.com/" /><!--[if IE]></base><![endif]-->
+<link href="http://static.dockerone.com/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+<link rel="stylesheet" type="text/css" href="http://static.dockerone.com/css/20141217/foot.css?v=20141221" />
+
+<link rel="stylesheet" type="text/css" href="http://www.dockerone.com/static/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="http://www.dockerone.com/static/css/icon.css" />
+
+<link href="http://www.dockerone.com/static/css/default/common.css?v=20141212" rel="stylesheet" type="text/css" />
+<link href="http://www.dockerone.com/static/css/default/link.css?v=20141212" rel="stylesheet" type="text/css" />
+<link href="http://www.dockerone.com/static/js/plug_module/style.css?v=20141212" rel="stylesheet" type="text/css" />
+
+
+<script type="text/javascript">
+	var _BD471C466F2727C45813F8FBF0D1A646="";
+	var G_POST_HASH=_BD471C466F2727C45813F8FBF0D1A646;
+	var G_INDEX_SCRIPT = "";
+	var G_SITE_NAME = "DockerOne";
+	var G_BASE_URL = "http://www.dockerone.com";
+	var G_STATIC_URL = "http://www.dockerone.com/static";
+	var G_UPLOAD_URL = "http://dockerone.com/uploads";
+	var G_USER_ID = "";
+	var G_USER_NAME = "";
+	var G_UPLOAD_ENABLE = "N";
+	var G_UNREAD_NOTIFICATION = 0;
+	var G_NOTIFICATION_INTERVAL = 100000;
+	var G_CAN_CREATE_TOPIC = "";
+	var G_REQUEST_URL = "/article/";
+
+	</script>
+<script src="http://www.dockerone.com/static/js/jquery.2.js?v=20141212" type="text/javascript"></script>
+<script src="http://www.dockerone.com/static/js/jquery.form.js?v=20141212" type="text/javascript"></script>
+<script src="http://www.dockerone.com/static/js/plug_module/plug-in_module.js?v=20141212" type="text/javascript"></script>
+<script src="http://www.dockerone.com/static/js/aws.js?v=20141212" type="text/javascript"></script>
+<script src="http://www.dockerone.com/static/js/aw_template.js?v=20141212" type="text/javascript"></script>
+<script src="http://www.dockerone.com/static/js/app.js?v=20141212" type="text/javascript"></script>
+<script type="text/javascript" src="http://www.dockerone.com/static/js/compatibility.js"></script>
+<!--[if lte IE 8]>
+	<script type="text/javascript" src="http://www.dockerone.com/static/js/respond.js"></script>
+<![endif]-->
+</head>
+<noscript unselectable="on" id="noscript">
+    <div class="aw-404 aw-404-wrap container">
+        <img src="http://www.dockerone.com/static/common/no-js.jpg">
+        <p>你的浏览器禁用了JavaScript, 请开启后刷新浏览器获得更好的体验!</p>
+    </div>
+</noscript>
+
+<body>
+	<div class="aw-top-menu-wrap">
+		<div class="container">
+			<!-- logo -->
+			<div class="aw-logo hidden-xs">
+				<a href="http://www.dockerone.com"></a>
+			</div>
+			<!-- end logo -->
+			<!-- 搜索框 -->
+			<div class="aw-search-box  hidden-xs hidden-sm">
+				<form class="navbar-search" action="http://www.dockerone.com/search/" id="global_search_form" method="post">
+					<input class="form-control search-query" type="text" placeholder="搜索问题、话题或人" autocomplete="off" name="q" id="aw-search-query" />
+					<span title="搜索" id="global_search_btns" onClick="$('#global_search_form').submit();"><i class="icon icon-search"></i></span>
+					<div class="aw-dropdown">
+						<div class="mod-body">
+							<p class="title">输入关键字进行搜索</p>
+							<ul class="aw-dropdown-list hide"></ul>
+							<p class="search"><span>搜索:</span><a onClick="$('#global_search_form').submit();"></a></p>
+						</div>
+						<div class="mod-footer">
+							<a href="http://www.dockerone.com/publish" onClick="$('#header_publish').click();" class="pull-right btn btn-mini btn-success publish">发起问题</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- end 搜索框 -->
+			<!-- 导航 -->
+			<div class="aw-top-nav navbar">
+				<div class="navbar-header">
+			      <button  class="navbar-toggle pull-left">
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			    </div>
+				<nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
+			      <ul class="nav navbar-nav">
+			      	                    <li><a href="" class=""><i class="icon icon-ul"></i> 发现</a></li>
+
+					<!-- <li><a href="http://www.dockerone.com/question/" class="">问题</a></li>
+
+					<li><a href="http://www.dockerone.com/article/" class="active">文章</a></li> -->
+
+					<li><a href="http://www.dockerone.com/topic/" ><i class="icon icon-topic"></i> 话题</a></li>
+										<li><a href="http://www.dockerone.com/help/"><i class="icon icon-bulb"></i> 帮助</a></li>			      </ul>
+			    </nav>
+			</div>
+			<!-- end 导航 -->
+			<!-- 用户栏 -->
+			<div class="aw-user-nav">
+				<!-- 登陆&注册栏 -->
+									<a class="login btn btn-normal btn-primary" href="http://www.dockerone.com/login/">登录</a>
+					<a class="register btn btn-normal btn-success" href="http://www.dockerone.com/account/register/">注册</a>								<!-- end 登陆&注册栏 -->
+			</div>
+			<!-- end 用户栏 -->
+			<!-- 发起 -->
+						<!-- end 发起 -->
+		</div>
+	</div>
+	
+
+<div class="aw-container-wrap">
+	
+	<div class="container">
+		<div class="row">
+			<div class="aw-content-wrap clearfix">
+				<div class="col-sm-12 col-md-9 aw-main-content">
+					<div class="aw-mod aw-article-list">
+																		<div class="aw-item">
+							<a class="aw-user-name hidden-xs" href="http://www.dockerone.com/people/llitfkitfk">
+								<img alt="" src="http://dockerone.com/uploads/avatar/000/00/00/26_avatar_mid.jpg" />
+							</a>
+							<div class="aw-content">
+								<div class="mod-body">
+									<h2><a href="http://www.dockerone.com/article/271">【理解Docker】Docker与Vagrant的简单区别</a></h2>
+									<div class="aw-topic-bar">
+										<div class="tag-bar clearfix">
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Docker" class="text" data-id="7">Docker</a>
+											</span>
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Vagrant" class="text" data-id="144">Vagrant</a>
+											</span>
+																					</div>
+									</div>
+									<div class="content-wrap">
+										<div class="content" id="detail_271">
+											<div class="hide-content markitup-box">
+												<br/>【编者的话】本文翻译自Quora上的一个问题：Docker和Vagrant的区别，以及我们何时使用他们。<br />
+<br/><strong>Vagrant</strong>和<strong>Docker</strong>是两只不同的野兽。<br />
+<br/><strong>Docker</strong>是一个由shell层和management层两部分组成的，用来构建并运行基于lxc的虚拟Linux容器。<br />
+<br/>Docker的伟大在于；它是轻量级的（因为它依赖于共享内核的Linux容器），[以及与它的分布无关]。虽然所有实例之间的内核共享（但与主机以及互相之间都是隔离的），不同实例的用户空间可以基于不同的Linux发行版本。<br />
+<br/><strong>Vagrant</strong>则是一个奇妙的工具，它使用puppet和/或chef管理，用来自动调配多个虚拟机，并且每个都有他们自己的配置。对于它的虚拟化来说，它可以使用不同的供应商。原来默认的提供商是VirtualBox，但它现在支持更多了，包括VMware fusion，甚至amazon-ec2。<br />
+<br/>有趣的是，Vagrant现在也具有一个Docker提供商，因此您可以用vagrant来管理Docker的构建和部署。<br />
+<br/>Docker，并不限制它的灵活性 - “一切都是镜像”，你可以创建变体镜像和全栈镜像，其中每一个添加功能到前一个。管理这些会成为一个挑战。<br />
+<br/>Vagrant也有类似的挑战，因为虚拟机可能会过时，有时虚拟机可能很难找到以及更新。有一些工具比如packer和以前的veewee可以用来帮助你构建所谓的'基础'虚拟机。<br />
+<br/>我相信这些工具可以很好地在一起工作，我觉得这样的组合会在你计划的筹码中或者在你要做整个部件更换测试中，甚至是基础操作系统中大放异彩。<br />
+<br/>假设你有一个基于Centos的应用程序，并且你要切换到Ubuntu或是其他方式。假设你想完全地升级你的操作系统。<br />
+<br/>我总是说在开发测试与分级中，对于当前生产环境（包括配置）以及在任何潜在的替代生产环境中你必须要测试你的产品。您是否正在计划一个安全更新？你想更新或是切换到Java吗？<br />
+<br/>这是Vagrant和Docker出彩的地方。我希望Docker帮助您加快对多个操作环境的测试。<br />
+<br/>Docker是否一个部署应用程序到生产生产环境中的有用工具呢？这是它常见的使用情况 - 那么它可能是。然而，配置文件的本质变化，尤其是那些必须通过网络进行协调的地方，可以更好地用一个知道在网络中的其他组件的工具。<br />
+<br/><strong>原文链接：<a href="http://www.quora.com/What-is-the-difference-between-Docker-and-Vagrant-When-should-you-use-each-one">What is the difference between Docker and Vagrant? When should you use each one?</a> （翻译：田浩浩）</strong>
+											</div>
+
+																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_271'), $('#detail_more_271')); return false;">继续阅读 »</a>
+								        											</div>
+
+										<div class="content markitup-box hide" id="detail_more_271">
+											<br/>【编者的话】本文翻译自Quora上的一个问题：Docker和Vagrant的区别，以及我们何时使用他们。<br />
+<br/><strong>Vagrant</strong>和<strong>Docker</strong>是两只不同的野兽。<br />
+<br/><strong>Docker</strong>是一个由shell层和management层两部分组成的，用来构建并运行基于lxc的虚拟Linux容器。<br />
+<br/>Docker的伟大在于；它是轻量级的（因为它依赖于共享内核的Linux容器），[以及与它的分布无关]。虽然所有实例之间的内核共享（但与主机以及互相之间都是隔离的），不同实例的用户空间可以基于不同的Linux发行版本。<br />
+<br/><strong>Vagrant</strong>则是一个奇妙的工具，它使用puppet和/或chef管理，用来自动调配多个虚拟机，并且每个都有他们自己的配置。对于它的虚拟化来说，它可以使用不同的供应商。原来默认的提供商是VirtualBox，但它现在支持更多了，包括VMware fusion，甚至amazon-ec2。<br />
+<br/>有趣的是，Vagrant现在也具有一个Docker提供商，因此您可以用vagrant来管理Docker的构建和部署。<br />
+<br/>Docker，并不限制它的灵活性 - “一切都是镜像”，你可以创建变体镜像和全栈镜像，其中每一个添加功能到前一个。管理这些会成为一个挑战。<br />
+<br/>Vagrant也有类似的挑战，因为虚拟机可能会过时，有时虚拟机可能很难找到以及更新。有一些工具比如packer和以前的veewee可以用来帮助你构建所谓的'基础'虚拟机。<br />
+<br/>我相信这些工具可以很好地在一起工作，我觉得这样的组合会在你计划的筹码中或者在你要做整个部件更换测试中，甚至是基础操作系统中大放异彩。<br />
+<br/>假设你有一个基于Centos的应用程序，并且你要切换到Ubuntu或是其他方式。假设你想完全地升级你的操作系统。<br />
+<br/>我总是说在开发测试与分级中，对于当前生产环境（包括配置）以及在任何潜在的替代生产环境中你必须要测试你的产品。您是否正在计划一个安全更新？你想更新或是切换到Java吗？<br />
+<br/>这是Vagrant和Docker出彩的地方。我希望Docker帮助您加快对多个操作环境的测试。<br />
+<br/>Docker是否一个部署应用程序到生产生产环境中的有用工具呢？这是它常见的使用情况 - 那么它可能是。然而，配置文件的本质变化，尤其是那些必须通过网络进行协调的地方，可以更好地用一个知道在网络中的其他组件的工具。<br />
+<br/><strong>原文链接：<a href="http://www.quora.com/What-is-the-difference-between-Docker-and-Vagrant-When-should-you-use-each-one">What is the difference between Docker and Vagrant? When should you use each one?</a> （翻译：田浩浩）</strong>																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_more_271'), $('#detail_271')); return false;">收起阅读 »</a>
+								        											</div>
+									</div>
+								</div>
+								<div class="mod-footer clearfix">
+									<span class="pull-right more-operate text-color-999">
+										田浩浩 发表于 : 2015-03-25 10:42
+										<a class="text-color-999" href="http://www.dockerone.com/article/271"><i class="icon icon-comment"></i> 评论 (0)</a>
+										<a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
+											<i class="icon icon-share"></i> 分享										</a>
+										<div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+											<ul class="aw-dropdown-list">
+												<li><a onclick="AWS.User.share_out('tsina', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/271');"><i class="icon icon-weibo"></i> 微博</a></li>
+												<li><a onclick="AWS.User.share_out('qzone', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/271');"><i class="icon icon-qzone"></i> QZONE</a></li>
+												<li><a onclick="AWS.User.share_out('weixin', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/271');"><i class="icon icon-wechat"></i> 微信</a></li>
+											</ul>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+												<div class="aw-item">
+							<a class="aw-user-name hidden-xs" href="http://www.dockerone.com/people/vitasyuzhou">
+								<img alt="" src="http://dockerone.com/uploads/avatar/000/00/09/65_avatar_mid.jpg" />
+							</a>
+							<div class="aw-content">
+								<div class="mod-body">
+									<h2><a href="http://www.dockerone.com/article/270">为什么隧道封装是Docker多数网络项目的共同选择？</a></h2>
+									<div class="aw-topic-bar">
+										<div class="tag-bar clearfix">
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Weave" class="text" data-id="26">Weave</a>
+											</span>
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Docker" class="text" data-id="7">Docker</a>
+											</span>
+																					</div>
+									</div>
+									<div class="content-wrap">
+										<div class="content" id="detail_270">
+											<div class="hide-content markitup-box">
+												<br/>【编者的话】只要使用主机端口映射或是将Docker原生网桥docker0的上行链路连通网卡，容器的流量都可以从主机发送出去，为什么这么多的Docker网络项目都不约而同地选择使用隧道技术将网络负载再次封装发送，接收的时候再解封装呢？<br />
+<h4>背景</h4>在我之前<a href="http://dockerone.com/article/262">Weave的运行原理</a>的文章中，介绍到Weave在跨主机的容器通信过程中，会使用pcap截获容器发送和接收的 网络包，然后按照自定义的格式将这些包重新封装为UDP报文再次注入到bridge上的接口发送出去。实际上这不是Weave独有的选择，CoreOS的<a href="https://github.com/coreos/flannel">flannel</a>网络项目也是一样的方法。最近被Docker公司收购的初创项目SocketPlane，采用基于Open vSwitch的VXLAN的隧道技术来实现相同的过程。那么，就有一个疑问：实际上只要使用主机端口映射或是将Docker原生网桥docker0的上行链路连通网卡，容器的流量都可以从主机发送出去，为什么这么多的Docker网络项目都不约而同地选择使用隧道技术将网络负载再次封装发送，接收的时候再解封装呢？<br />
+<h4>解析原因</h4><strong>隧道封装是目前最简单的穿透Docker容器复杂网络安全设置的方法。</strong><br />
+<br/>实际上这个问题最重要的原因是与Docker容器运行环境的多样复杂性是直接相关的。我们都知道Docker容器可以运行在公有云、私有云、虚拟化以及裸机上。为了网络的安全，这些环境上都应该有严格的安全组和防火墙设置来保障只有合法流量能够通过端口。这些带来了网络安全的同时，也给Docker容器的部署和可移动性带来了麻烦。每次部署启动一个容器，就要将其相应使用的端口上的安全设置更新为开放。尤其是混合云场景下这个问题就更为麻烦了。我举一个具体的例子：当前很多的PaaS服务提供商都没有自己的数据中心，他们直接从公有云的IaaS提供商那里获得虚拟机，那么这个时候就需要PaaS提供方调用公有云IaaS提供方的网络安全设置的API来打开端口。PaaS提供商是不会把自己绑定死的，会选择多家公有云的IaaS（AWS，GCE，Azure等），这些IaaS提供商的API全都不一样，这得多麻烦啊。这还没有考虑私有云，自己数据中心的虚拟化和裸机环境的端口ACL设置的复杂。<br />
+<br/>网络安全的设置还不仅仅只有这些，比如最常见的IP与mac绑定，这是openstack的默认设置，要修改可以，同样也要调用openstack neutron的API增加端口允许的IP-mac pair。这里额外提一下，Docker主机的port mapping方式由于限制了容器移动后的可访问性，不被大多数跨主机Docker网络项目采用，多数项目还是希望能给每个容器一个IP，容器间访问使用这个IP，而不是Docker容器所在主机的IP。<br />
+<h4>结论</h4>通过上面的解析，可以想象，如果是在混合云场景下，使用隧道封装技术后，从虚拟机流出的流量IP和mac都是唯一的，且只使用固定的端口，那Docker容器运行环境的安全设置就可以固定下来，简便多了。<br />
+<br/>其实，Docker网络中使用隧道封装技术还可以有利于一些其他问题的解决：<br />
+<ol><li>容器相较于虚拟机在一台主机上的密度大大增加，至少多出一个量级，要说两个量级我也信。在这样的情况下机架上的接入交换机的port-mac表容量是否足够呢，这里使用了隧道封装了负载后，就不用担心这个问题了。 </li><li>此外，就如同虚拟机使用了VXLAN后一样，有利于打破IP地址网段对二层网络规模的限制，打造出一个大二层的网络。</li></ol><br />
+<br/><strong>感谢<a href="http://openstack.wiaapp.cn/?p=1327">华为云计算产品技术开发部门</a>的投稿。</strong>
+											</div>
+
+																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_270'), $('#detail_more_270')); return false;">继续阅读 »</a>
+								        											</div>
+
+										<div class="content markitup-box hide" id="detail_more_270">
+											<br/>【编者的话】只要使用主机端口映射或是将Docker原生网桥docker0的上行链路连通网卡，容器的流量都可以从主机发送出去，为什么这么多的Docker网络项目都不约而同地选择使用隧道技术将网络负载再次封装发送，接收的时候再解封装呢？<br />
+<h4>背景</h4>在我之前<a href="http://dockerone.com/article/262">Weave的运行原理</a>的文章中，介绍到Weave在跨主机的容器通信过程中，会使用pcap截获容器发送和接收的 网络包，然后按照自定义的格式将这些包重新封装为UDP报文再次注入到bridge上的接口发送出去。实际上这不是Weave独有的选择，CoreOS的<a href="https://github.com/coreos/flannel">flannel</a>网络项目也是一样的方法。最近被Docker公司收购的初创项目SocketPlane，采用基于Open vSwitch的VXLAN的隧道技术来实现相同的过程。那么，就有一个疑问：实际上只要使用主机端口映射或是将Docker原生网桥docker0的上行链路连通网卡，容器的流量都可以从主机发送出去，为什么这么多的Docker网络项目都不约而同地选择使用隧道技术将网络负载再次封装发送，接收的时候再解封装呢？<br />
+<h4>解析原因</h4><strong>隧道封装是目前最简单的穿透Docker容器复杂网络安全设置的方法。</strong><br />
+<br/>实际上这个问题最重要的原因是与Docker容器运行环境的多样复杂性是直接相关的。我们都知道Docker容器可以运行在公有云、私有云、虚拟化以及裸机上。为了网络的安全，这些环境上都应该有严格的安全组和防火墙设置来保障只有合法流量能够通过端口。这些带来了网络安全的同时，也给Docker容器的部署和可移动性带来了麻烦。每次部署启动一个容器，就要将其相应使用的端口上的安全设置更新为开放。尤其是混合云场景下这个问题就更为麻烦了。我举一个具体的例子：当前很多的PaaS服务提供商都没有自己的数据中心，他们直接从公有云的IaaS提供商那里获得虚拟机，那么这个时候就需要PaaS提供方调用公有云IaaS提供方的网络安全设置的API来打开端口。PaaS提供商是不会把自己绑定死的，会选择多家公有云的IaaS（AWS，GCE，Azure等），这些IaaS提供商的API全都不一样，这得多麻烦啊。这还没有考虑私有云，自己数据中心的虚拟化和裸机环境的端口ACL设置的复杂。<br />
+<br/>网络安全的设置还不仅仅只有这些，比如最常见的IP与mac绑定，这是openstack的默认设置，要修改可以，同样也要调用openstack neutron的API增加端口允许的IP-mac pair。这里额外提一下，Docker主机的port mapping方式由于限制了容器移动后的可访问性，不被大多数跨主机Docker网络项目采用，多数项目还是希望能给每个容器一个IP，容器间访问使用这个IP，而不是Docker容器所在主机的IP。<br />
+<h4>结论</h4>通过上面的解析，可以想象，如果是在混合云场景下，使用隧道封装技术后，从虚拟机流出的流量IP和mac都是唯一的，且只使用固定的端口，那Docker容器运行环境的安全设置就可以固定下来，简便多了。<br />
+<br/>其实，Docker网络中使用隧道封装技术还可以有利于一些其他问题的解决：<br />
+<ol><li>容器相较于虚拟机在一台主机上的密度大大增加，至少多出一个量级，要说两个量级我也信。在这样的情况下机架上的接入交换机的port-mac表容量是否足够呢，这里使用了隧道封装了负载后，就不用担心这个问题了。 </li><li>此外，就如同虚拟机使用了VXLAN后一样，有利于打破IP地址网段对二层网络规模的限制，打造出一个大二层的网络。</li></ol><br />
+<br/><strong>感谢<a href="http://openstack.wiaapp.cn/?p=1327">华为云计算产品技术开发部门</a>的投稿。</strong>																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_more_270'), $('#detail_270')); return false;">收起阅读 »</a>
+								        											</div>
+									</div>
+								</div>
+								<div class="mod-footer clearfix">
+									<span class="pull-right more-operate text-color-999">
+										vitasyuzhou 发表于 : 2015-03-23 23:34
+										<a class="text-color-999" href="http://www.dockerone.com/article/270"><i class="icon icon-comment"></i> 评论 (2)</a>
+										<a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
+											<i class="icon icon-share"></i> 分享										</a>
+										<div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+											<ul class="aw-dropdown-list">
+												<li><a onclick="AWS.User.share_out('tsina', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/270');"><i class="icon icon-weibo"></i> 微博</a></li>
+												<li><a onclick="AWS.User.share_out('qzone', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/270');"><i class="icon icon-qzone"></i> QZONE</a></li>
+												<li><a onclick="AWS.User.share_out('weixin', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/270');"><i class="icon icon-wechat"></i> 微信</a></li>
+											</ul>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+												<div class="aw-item">
+							<a class="aw-user-name hidden-xs" href="http://www.dockerone.com/people/%E5%88%9A%E7%99%BE">
+								<img alt="" src="http://dockerone.com/uploads/avatar/000/00/05/64_avatar_mid.jpg" />
+							</a>
+							<div class="aw-content">
+								<div class="mod-body">
+									<h2><a href="http://www.dockerone.com/article/269">Docker&amp;MongoDB实战（二）性能与容错</a></h2>
+									<div class="aw-topic-bar">
+										<div class="tag-bar clearfix">
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/MongoDB" class="text" data-id="69">MongoDB</a>
+											</span>
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Docker" class="text" data-id="7">Docker</a>
+											</span>
+																					</div>
+									</div>
+									<div class="content-wrap">
+										<div class="content" id="detail_269">
+											<div class="hide-content markitup-box">
+												<br/>【编者的话】在Docker中运行数据库很多人都想过，但是IO方面和在实体机上运行会有差异吗？数据应该怎么存储？映射到主机还是使用一个单独存储数据的容器？哪种方式更好？性能方面呢？本文针对这些问题一一给出了答案。第一篇文章在<a href="http://dockerone.com/article/191">这里</a>。<br />
+<br/>在前面，我们已经知道怎样创建和运行一个简单的基于CentOS的MongoDB实例。这对于开发或者测试使用来说再好不过了，但是它并没有说明一些性能和容错能力的问题。在本文中，我们会了解Docker相关的磁盘存储选项，以及在其之上运行数据库（如MongoDB）的注意事项。<br />
+<h2>文件系统分层</h2><div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150322/8f5101002d7eb3967252b364b3fb9601.png" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150322/8f5101002d7eb3967252b364b3fb9601.png" class="img-polaroid" title="docker-filesystems-multilayer.png" alt="docker-filesystems-multilayer.png" /></a>
+</div>
+<br />
+Docker最重要的特性（也是我比较喜欢的特性）是<a href="https://docs.docker.com/terms/layer/">分层文件系统</a>。每个基础层都是只读的，这些基础层相互叠加构成真实的文件系统，最上面的层是读写层（可读可写）。它们非常便于版本管理，同时，也可以缓存（我们不需要每次都从头开始构建）。<br />
+<br/>相比于传统的镜像方式，这真是一个巨大的改变，之前的整个文件系统镜像或者虚拟机模板都是手工构建的，我们根本不知道其中包含了什么以及为什么要包含。最近我们注意到有很多的配置管理工具，比如<a href="http://puppetlabs.com/">Puppet</a>、 <a href="https://www.chef.io/chef/">Chef</a>和<a href="http://www.ansible.com/">Ansible</a>，但是从头开始构建一个复杂且灵活的镜像非常耗时间。Docker分层的方式可以加快构建时间，因为它只需要重构仅仅做出修改的文件层。<br />
+<br/>但是，这种方式并不是没有缺点：这样的分层文件系统的运行时性能相当差。这也依赖于Docker使用的存储模块，包括之前一开始使用的AUFS，以及后来的OverlayFS、BTRFS和device mapper。为了获得最佳的I/O性能，我们需要使用Docker的<a href="https://docs.docker.com/userguide/dockervolumes/">数据卷</a>。数据卷位于Docker容器之外，因此也绕开了分层文件系统。有两个主要的数据卷类型：主机目录和仅存储数据的容器。<br />
+<h2>数据卷：主机目录</h2><div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150322/43076a06bf41326cfaf22b1616df3790.png" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150322/43076a06bf41326cfaf22b1616df3790.png" class="img-polaroid" title="Screen-Shot-2015-02-01-at-17.45_.39_.png" alt="Screen-Shot-2015-02-01-at-17.45_.39_.png" /></a>
+</div>
+<br />
+一个主机目录数据卷是一个被挂载在原始容器的简单的目录。就像我们在<a href="http://dockerone.com/article/191">第一部分</a>中介绍的：在Docker主机中创建一个目录，然后使用它作为MongoDB的dbpath（容纳数据和分类文件）。例如：<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;run&nbsp;-d&nbsp;-P&nbsp;-v&nbsp;~/db:/data/db&nbsp;mongod&nbsp;--smallfiles<br />
+</pre><br />
+通过检查日志文件来确认MongoDB容器是否启动成功：<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;ps<br />
+<br />
+CONTAINER&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAMES<br />
+<br />
+efca3b637a75&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mongod:latest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;mongod&nbsp;--smallfiles&nbsp;&nbsp;&nbsp;9&nbsp;minutes&nbsp;ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up&nbsp;9&nbsp;minutes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:49160-&gt;27017/tcp&nbsp;&nbsp;&nbsp;prickly_sammet<br />
+<br />
+$&nbsp;docker&nbsp;logs&nbsp;efca3b637a75<br />
+<br />
+2015-02-01T18:35:02.279+0000&nbsp;[initandlisten]&nbsp;MongoDB&nbsp;starting&nbsp;:&nbsp;pid=1&nbsp;port=27017&nbsp;dbpath=/data/db&nbsp;64-bit&nbsp;host=efca3b637a75<br />
+<br />
+2015-02-01T18:35:02.279+0000&nbsp;[initandlisten]&nbsp;db&nbsp;version&nbsp;v2.6.7<br />
+<br />
+2015-02-01T18:35:02.279+0000&nbsp;[initandlisten]&nbsp;git&nbsp;version:&nbsp;a7d57ad27c382de82e9cb93bf983a80fd9ac9899<br />
+<br />
+2015-02-01T18:35:02.279+0000&nbsp;[initandlisten]&nbsp;build&nbsp;info:&nbsp;Linux&nbsp;build7.nj1.10gen.cc&nbsp;2.6.32-431.3.1.el6.x86_64&nbsp;#1&nbsp;SMP&nbsp;Fri&nbsp;Jan&nbsp;3&nbsp;21:39:27&nbsp;UTC&nbsp;2014&nbsp;x86_64&nbsp;BOOST_LIB_VERSION=1_49<br />
+<br />
+2015-02-01T18:35:02.279+0000&nbsp;[initandlisten]&nbsp;allocator:&nbsp;tcmalloc<br />
+<br />
+2015-02-01T18:35:02.279+0000&nbsp;[initandlisten]&nbsp;options:&nbsp;{&nbsp;storage:&nbsp;{&nbsp;smallFiles:&nbsp;true&nbsp;}&nbsp;}<br />
+<br />
+2015-02-01T18:35:02.282+0000&nbsp;[initandlisten]&nbsp;journal&nbsp;dir=/data/db/journal<br />
+<br />
+2015-02-01T18:35:02.283+0000&nbsp;[initandlisten]&nbsp;recover&nbsp;:&nbsp;no&nbsp;journal&nbsp;files&nbsp;present,&nbsp;no&nbsp;recovery&nbsp;needed<br />
+<br />
+2015-02-01T18:35:02.454+0000&nbsp;[initandlisten]&nbsp;allocating&nbsp;new&nbsp;ns&nbsp;file&nbsp;/data/db/local.ns,&nbsp;filling&nbsp;with&nbsp;zeroes...<br />
+<br />
+2015-02-01T18:35:02.510+0000&nbsp;[FileAllocator]&nbsp;allocating&nbsp;new&nbsp;datafile&nbsp;/data/db/local.0,&nbsp;filling&nbsp;with&nbsp;zeroes...<br />
+<br />
+2015-02-01T18:35:02.510+0000&nbsp;[FileAllocator]&nbsp;creating&nbsp;directory&nbsp;/data/db/_tmp<br />
+<br />
+2015-02-01T18:35:02.513+0000&nbsp;[FileAllocator]&nbsp;done&nbsp;allocating&nbsp;datafile&nbsp;/data/db/local.0,&nbsp;size:&nbsp;16MB,&nbsp;&nbsp;took&nbsp;0.001&nbsp;secs<br />
+<br />
+2015-02-01T18:35:02.514+0000&nbsp;[initandlisten]&nbsp;build&nbsp;index&nbsp;on:&nbsp;local.startup_log&nbsp;properties:&nbsp;{&nbsp;v:&nbsp;1,&nbsp;key:&nbsp;{&nbsp;_id:&nbsp;1&nbsp;},&nbsp;name:&nbsp;&quot;_id_&quot;,&nbsp;ns:&nbsp;&quot;local.startup_log&quot;&nbsp;}<br />
+<br />
+2015-02-01T18:35:02.514+0000&nbsp;[initandlisten]&nbsp;&nbsp;added&nbsp;index&nbsp;to&nbsp;empty&nbsp;collection<br />
+<br />
+2015-02-01T18:35:02.514+0000&nbsp;[initandlisten]&nbsp;waiting&nbsp;for&nbsp;connections&nbsp;on&nbsp;port&nbsp;27017<br />
+<br />
+2015-02-01T18:36:02.481+0000&nbsp;[clientcursormon]&nbsp;mem&nbsp;(MB)&nbsp;res:36&nbsp;virt:246<br />
+<br />
+2015-02-01T18:36:02.481+0000&nbsp;[clientcursormon]&nbsp;&nbsp;mapped&nbsp;(incl&nbsp;journal&nbsp;view):64<br />
+<br />
+2015-02-01T18:36:02.481+0000&nbsp;[clientcursormon]&nbsp;&nbsp;connections:0<br />
+<br />
+2015-02-01T18:41:02.571+0000&nbsp;[clientcursormon]&nbsp;mem&nbsp;(MB)&nbsp;res:36&nbsp;virt:246<br />
+<br />
+2015-02-01T18:41:02.571+0000&nbsp;[clientcursormon]&nbsp;&nbsp;mapped&nbsp;(incl&nbsp;journal&nbsp;view):64<br />
+<br />
+2015-02-01T18:41:02.571+0000&nbsp;[clientcursormon]&nbsp;&nbsp;connections:0<br />
+</pre><br />
+确保数据文件已经在指定的主机目录~/db中创建。<br />
+<pre class="prettyprint">$&nbsp;ls&nbsp;-l&nbsp;~/db<br />
+<br />
+total&nbsp;32776<br />
+<br />
+drwxr-xr-x.&nbsp;2&nbsp;root&nbsp;root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17&nbsp;Feb&nbsp;&nbsp;1&nbsp;18:35&nbsp;journal<br />
+<br />
+-rw-------.&nbsp;1&nbsp;root&nbsp;root&nbsp;16777216&nbsp;Feb&nbsp;&nbsp;1&nbsp;18:35&nbsp;local.0<br />
+<br />
+-rw-------.&nbsp;1&nbsp;root&nbsp;root&nbsp;16777216&nbsp;Feb&nbsp;&nbsp;1&nbsp;18:35&nbsp;local.ns<br />
+<br />
+-rwxr-xr-x.&nbsp;1&nbsp;root&nbsp;root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;Feb&nbsp;&nbsp;1&nbsp;18:35&nbsp;mongod.lock<br />
+<br />
+drwxr-xr-x.&nbsp;2&nbsp;root&nbsp;root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;Feb&nbsp;&nbsp;1&nbsp;18:35&nbsp;_tmp<br />
+</pre><br />
+<h3>快速衡量（Quick benchmarking）</h3>主机目录数据卷比默认的分层文件系统快了多少？这当然依赖于你的环境，当然，本文也不会过多介绍性能测试的东西。但是，这里有一个快速的方法就是使用<a href="http://www.dockerone.com/mongoperf">mongoperf</a>来测试。<br />
+<pre class="prettyprint">#&nbsp;mongoperf&nbsp;process&nbsp;on&nbsp;latest&nbsp;CentOS<br />
+#&nbsp;See&nbsp;https://docs.docker.com/articles/dockerfile_best-practices/<br />
+FROM&nbsp;centos<br />
+MAINTAINER&nbsp;James&nbsp;Tan&lt;james.tan@mongodb.com&gt;<br />
+COPY&nbsp;mongodb.repo/etc/yum.repos.d/<br />
+RUN&nbsp;yum&nbsp;install-ymongodb-org-tools<br />
+WORKDIR/tmp<br />
+ENTRYPOINT[&quot;mongoperf&quot;]<br />
+</pre><br />
+这里我们使用与第一部分中案例相同的mongodb.repo，为了方便这里再做一次：<br />
+<pre class="prettyprint">[mongodb]<br />
+<br />
+name=MongoDB&nbsp;Repository<br />
+<br />
+baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/<br />
+<br />
+gpgcheck=0<br />
+<br />
+enabled=1<br />
+</pre><br />
+使用在你当前的目录如上的两个文件，构建将要运行的镜像：<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;build&nbsp;-t&nbsp;mongoperf&nbsp;.<br />
+</pre><br />
+现在衡量分层的根目录文件系统，通过运行：<br />
+<pre class="prettyprint">$&nbsp;echo&nbsp;&quot;{nThreads:32,fileSizeMB:1000,r:true,w:true}&quot;&nbsp;|&nbsp;docker&nbsp;run&nbsp;-i&nbsp;--sig-proxy=false&nbsp;mongoperf<br />
+</pre><br />
+你应该看到相似的输出如下：<br />
+<pre class="prettyprint">mongoperf<br />
+<br />
+use&nbsp;-h&nbsp;for&nbsp;help<br />
+<br />
+parsed&nbsp;options:<br />
+<br />
+{&nbsp;nThreads:&nbsp;32,&nbsp;fileSizeMB:&nbsp;1000,&nbsp;r:&nbsp;true,&nbsp;w:&nbsp;true&nbsp;}<br />
+<br />
+creating&nbsp;test&nbsp;file&nbsp;size:1000MB&nbsp;...<br />
+<br />
+testing...<br />
+<br />
+optoins:{&nbsp;nThreads:&nbsp;32,&nbsp;fileSizeMB:&nbsp;1000,&nbsp;r:&nbsp;true,&nbsp;w:&nbsp;true&nbsp;}<br />
+<br />
+wthr&nbsp;32<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;1<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+877&nbsp;ops/sec&nbsp;3&nbsp;MB/sec<br />
+<br />
+928&nbsp;ops/sec&nbsp;3&nbsp;MB/sec<br />
+<br />
+920&nbsp;ops/sec&nbsp;3&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;2<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+1211&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1158&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1172&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;4<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+1194&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1163&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1162&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;8<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+1112&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1161&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1174&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;16<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+1156&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1178&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1160&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;32<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+1244&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1205&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1211&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+</pre><br />
+<code class="prettyprint">mongoperf</code>将一直运行，你可以通过Ctrl+C退出终端。容器将一直运行在后台，因此让我们结束它。<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;ps<br />
+<br />
+CONTAINER&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAMES<br />
+<br />
+c1366d08b543&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mongoperf:latest&nbsp;&nbsp;&nbsp;&nbsp;&quot;mongoperf&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;minutes&nbsp;ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up&nbsp;3&nbsp;minutes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boring_kirch<br />
+<br />
+$&nbsp;docker&nbsp;rm&nbsp;-f&nbsp;c1366d08b543<br />
+<br />
+c1366d08b543<br />
+</pre><br />
+现在再运行下主机目录数据卷：<br />
+<pre class="prettyprint">$&nbsp;mkdir&nbsp;~/tmp<br />
+<br />
+$&nbsp;echo&nbsp;&quot;{nThreads:32,fileSizeMB:1000,r:true,w:true}&quot;&nbsp;|&nbsp;docker&nbsp;run&nbsp;-i&nbsp;--sig-proxy=false&nbsp;-v&nbsp;~/tmp:/tmp&nbsp;mongoperf<br />
+</pre><br />
+从我们设置开始，这就有相同的输出：<br />
+<pre class="prettyprint">mongoperf<br />
+<br />
+use&nbsp;-h&nbsp;for&nbsp;help<br />
+<br />
+parsed&nbsp;options:<br />
+<br />
+{&nbsp;nThreads:&nbsp;32,&nbsp;fileSizeMB:&nbsp;1000,&nbsp;r:&nbsp;true,&nbsp;w:&nbsp;true&nbsp;}<br />
+<br />
+creating&nbsp;test&nbsp;file&nbsp;size:1000MB&nbsp;...<br />
+<br />
+testing...<br />
+<br />
+optoins:{&nbsp;nThreads:&nbsp;32,&nbsp;fileSizeMB:&nbsp;1000,&nbsp;r:&nbsp;true,&nbsp;w:&nbsp;true&nbsp;}<br />
+<br />
+wthr&nbsp;32<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;1<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+1273&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1242&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1178&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;2<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+2437&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+2702&nbsp;ops/sec&nbsp;10&nbsp;MB/sec<br />
+<br />
+2546&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;4<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+2575&nbsp;ops/sec&nbsp;10&nbsp;MB/sec<br />
+<br />
+2465&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+2558&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;8<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+2471&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+3081&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+3027&nbsp;ops/sec&nbsp;11&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;16<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+3031&nbsp;ops/sec&nbsp;11&nbsp;MB/sec<br />
+<br />
+3376&nbsp;ops/sec&nbsp;13&nbsp;MB/sec<br />
+<br />
+3384&nbsp;ops/sec&nbsp;13&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;32<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+3272&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+3196&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+3385&nbsp;ops/sec&nbsp;13&nbsp;MB/sec<br />
+<br />
+...<br />
+</pre><br />
+停止并移除之前的容器。<br />
+<br/>具有32个并行读写线程结果最后一组比较，我们看到在操作每秒数量提高180%，从1211到3385 ops/s。还有的吞吐量增加了225%，从4到13 MB/s。<br />
+<h3>容器可移植性</h3>虽然上面的方式中性能得到了提升，但这并不利于容器的迁移，因为现在我们的Docker容器需要依赖外部的Docker主机上的目录，而这个目录却没有通过Docker来管理，所以我们不能简单的运行或者迁移它。最好的解决方案就是使用data-only容器，接下来，我们将详述。<br />
+<h2>数据卷：仅有数据的容器</h2><div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150322/30870e06a14c46b20186b7aea7329382.png" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150322/30870e06a14c46b20186b7aea7329382.png" class="img-polaroid" title="Screen-Shot-2015-02-01-at-17.47_.40_.png" alt="Screen-Shot-2015-02-01-at-17.47_.40_.png" /></a>
+</div>
+<br />
+仅有数据（data-only）的容器是推荐的Docker数据存储模式，它可以解耦对主机的依赖。<br />
+<br/>为了创建数据容器来作为衡量标准，我们重新使用已经存在的<code class="prettyprint">mongoperf</code>镜像：<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;create&nbsp;-v&nbsp;/tmp&nbsp;--name&nbsp;mongoperf-data&nbsp;mongoperf<br />
+<br />
+7d476bb9d3ca0cf282e2d3b9cf54e18d7bbe9b561be5d34646947032b64b4b9c<br />
+</pre><br />
+使用数据容器，重新运行测试标准，使用<code class="prettyprint">--volume-from mongoperf-data</code>参数。<br />
+<pre class="prettyprint">$&nbsp;echo&nbsp;&quot;{nThreads:32,fileSizeMB:1000,r:true,w:true}&quot;&nbsp;|&nbsp;docker&nbsp;run&nbsp;-i&nbsp;--sig-proxy=false&nbsp;--volumes-from&nbsp;mongoperf-data&nbsp;mongoperf<br />
+</pre><br />
+这个过程如下面的输出：<br />
+<pre class="prettyprint">mongoperf<br />
+<br />
+use&nbsp;-h&nbsp;for&nbsp;help<br />
+<br />
+parsed&nbsp;options:<br />
+<br />
+{&nbsp;nThreads:&nbsp;32,&nbsp;fileSizeMB:&nbsp;1000,&nbsp;r:&nbsp;true,&nbsp;w:&nbsp;true&nbsp;}<br />
+<br />
+creating&nbsp;test&nbsp;file&nbsp;size:1000MB&nbsp;...<br />
+<br />
+testing...<br />
+<br />
+optoins:{&nbsp;nThreads:&nbsp;32,&nbsp;fileSizeMB:&nbsp;1000,&nbsp;r:&nbsp;true,&nbsp;w:&nbsp;true&nbsp;}<br />
+<br />
+wthr&nbsp;32<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;1<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+1153&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1146&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1151&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;2<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+1857&nbsp;ops/sec&nbsp;7&nbsp;MB/sec<br />
+<br />
+2489&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+2459&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;4<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+2518&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+2477&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+2451&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;8<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+2812&nbsp;ops/sec&nbsp;10&nbsp;MB/sec<br />
+<br />
+2837&nbsp;ops/sec&nbsp;11&nbsp;MB/sec<br />
+<br />
+2793&nbsp;ops/sec&nbsp;10&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+ew&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;16<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+3111&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+3319&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+3263&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;32<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+2919&nbsp;ops/sec&nbsp;11&nbsp;MB/sec<br />
+<br />
+3274&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+3306&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+...<br />
+</pre><br />
+性能方面它和主机目录数据卷方式一致。即使引用容器被移除了，仅仅包含数据的容器依然存在。我们继续运行查看：<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;ps&nbsp;-a<br />
+<br />
+CONTAINER&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAMES<br />
+<br />
+7d476bb9d3ca&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mongoperf:latest&nbsp;&nbsp;&nbsp;&nbsp;&quot;mongoperf&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;minutes&nbsp;ago&nbsp;mongoperf-data<br />
+</pre><br />
+<h2>结束</h2>回顾一下我们的<code class="prettyprint">mongod</code>容器，我们现在使用data-only容器来存储数据以获得更好的性能。<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;create&nbsp;-v&nbsp;/data/db&nbsp;--name&nbsp;mongod-data&nbsp;mongod<br />
+<br />
+$&nbsp;docker&nbsp;run&nbsp;-d&nbsp;-P&nbsp;--volumes-from&nbsp;mongod-data&nbsp;mongod&nbsp;--smallfiles<br />
+</pre><br />
+记住，你可以通过运行<code class="prettyprint">docker ps</code>看到映射的本地端口值。例如：<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;ps<br />
+<br />
+CONTAINER&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAMES<br />
+<br />
+08245e631171&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mongod:latest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;mongod&nbsp;--smallfiles&nbsp;&nbsp;&nbsp;40&nbsp;seconds&nbsp;ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up&nbsp;39&nbsp;seconds&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:49165-&gt;27017/tcp&nbsp;&nbsp;&nbsp;gloomy_meitner<br />
+<br />
+$&nbsp;mongo&nbsp;--port&nbsp;49165<br />
+<br />
+MongoDB&nbsp;shell&nbsp;version:&nbsp;2.6.7<br />
+<br />
+connecting&nbsp;to:&nbsp;127.0.0.1:49165/test<br />
+<br />
+&gt;<br />
+</pre><br />
+数据卷将最终成为Docker里的<a href="https://github.com/docker/docker/pull/8484">头等公民</a>。同时，考虑使用社区工具，像<a href="https://github.com/cpuguy83/docker-volumes">docker-volume</a>来更加轻松的管理他们。<br />
+<h3>接下来</h3>在接下来的部分，我们将研究各种各样的Docker网络参数，并细说哪种更适合多主机的MongoDB副本集。敬请期待！<br />
+<br/><strong>原文链接：<a href="http://jam.sg/blog/mongodb-docker-part-2/">MONGODB &amp; DOCKER – PART 2</a>（翻译：刘红 校对：李颖杰）</strong><br />
+<br/>＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝<br />
+<strong>译者介绍</strong><br />
+刘红，才毕业的本科小生，平时喜欢业余学习一些自己感兴趣的技术或者框架，目前正在学习Docker，也在着手翻译Docker官方文档，如果对翻译Docker官方文档感兴趣的朋友可以联系译者哟。
+											</div>
+
+																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_269'), $('#detail_more_269')); return false;">继续阅读 »</a>
+								        											</div>
+
+										<div class="content markitup-box hide" id="detail_more_269">
+											<br/>【编者的话】在Docker中运行数据库很多人都想过，但是IO方面和在实体机上运行会有差异吗？数据应该怎么存储？映射到主机还是使用一个单独存储数据的容器？哪种方式更好？性能方面呢？本文针对这些问题一一给出了答案。第一篇文章在<a href="http://dockerone.com/article/191">这里</a>。<br />
+<br/>在前面，我们已经知道怎样创建和运行一个简单的基于CentOS的MongoDB实例。这对于开发或者测试使用来说再好不过了，但是它并没有说明一些性能和容错能力的问题。在本文中，我们会了解Docker相关的磁盘存储选项，以及在其之上运行数据库（如MongoDB）的注意事项。<br />
+<h2>文件系统分层</h2><div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150322/8f5101002d7eb3967252b364b3fb9601.png" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150322/8f5101002d7eb3967252b364b3fb9601.png" class="img-polaroid" title="docker-filesystems-multilayer.png" alt="docker-filesystems-multilayer.png" /></a>
+</div>
+<br />
+Docker最重要的特性（也是我比较喜欢的特性）是<a href="https://docs.docker.com/terms/layer/">分层文件系统</a>。每个基础层都是只读的，这些基础层相互叠加构成真实的文件系统，最上面的层是读写层（可读可写）。它们非常便于版本管理，同时，也可以缓存（我们不需要每次都从头开始构建）。<br />
+<br/>相比于传统的镜像方式，这真是一个巨大的改变，之前的整个文件系统镜像或者虚拟机模板都是手工构建的，我们根本不知道其中包含了什么以及为什么要包含。最近我们注意到有很多的配置管理工具，比如<a href="http://puppetlabs.com/">Puppet</a>、 <a href="https://www.chef.io/chef/">Chef</a>和<a href="http://www.ansible.com/">Ansible</a>，但是从头开始构建一个复杂且灵活的镜像非常耗时间。Docker分层的方式可以加快构建时间，因为它只需要重构仅仅做出修改的文件层。<br />
+<br/>但是，这种方式并不是没有缺点：这样的分层文件系统的运行时性能相当差。这也依赖于Docker使用的存储模块，包括之前一开始使用的AUFS，以及后来的OverlayFS、BTRFS和device mapper。为了获得最佳的I/O性能，我们需要使用Docker的<a href="https://docs.docker.com/userguide/dockervolumes/">数据卷</a>。数据卷位于Docker容器之外，因此也绕开了分层文件系统。有两个主要的数据卷类型：主机目录和仅存储数据的容器。<br />
+<h2>数据卷：主机目录</h2><div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150322/43076a06bf41326cfaf22b1616df3790.png" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150322/43076a06bf41326cfaf22b1616df3790.png" class="img-polaroid" title="Screen-Shot-2015-02-01-at-17.45_.39_.png" alt="Screen-Shot-2015-02-01-at-17.45_.39_.png" /></a>
+</div>
+<br />
+一个主机目录数据卷是一个被挂载在原始容器的简单的目录。就像我们在<a href="http://dockerone.com/article/191">第一部分</a>中介绍的：在Docker主机中创建一个目录，然后使用它作为MongoDB的dbpath（容纳数据和分类文件）。例如：<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;run&nbsp;-d&nbsp;-P&nbsp;-v&nbsp;~/db:/data/db&nbsp;mongod&nbsp;--smallfiles<br />
+</pre><br />
+通过检查日志文件来确认MongoDB容器是否启动成功：<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;ps<br />
+<br />
+CONTAINER&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAMES<br />
+<br />
+efca3b637a75&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mongod:latest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;mongod&nbsp;--smallfiles&nbsp;&nbsp;&nbsp;9&nbsp;minutes&nbsp;ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up&nbsp;9&nbsp;minutes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:49160-&gt;27017/tcp&nbsp;&nbsp;&nbsp;prickly_sammet<br />
+<br />
+$&nbsp;docker&nbsp;logs&nbsp;efca3b637a75<br />
+<br />
+2015-02-01T18:35:02.279+0000&nbsp;[initandlisten]&nbsp;MongoDB&nbsp;starting&nbsp;:&nbsp;pid=1&nbsp;port=27017&nbsp;dbpath=/data/db&nbsp;64-bit&nbsp;host=efca3b637a75<br />
+<br />
+2015-02-01T18:35:02.279+0000&nbsp;[initandlisten]&nbsp;db&nbsp;version&nbsp;v2.6.7<br />
+<br />
+2015-02-01T18:35:02.279+0000&nbsp;[initandlisten]&nbsp;git&nbsp;version:&nbsp;a7d57ad27c382de82e9cb93bf983a80fd9ac9899<br />
+<br />
+2015-02-01T18:35:02.279+0000&nbsp;[initandlisten]&nbsp;build&nbsp;info:&nbsp;Linux&nbsp;build7.nj1.10gen.cc&nbsp;2.6.32-431.3.1.el6.x86_64&nbsp;#1&nbsp;SMP&nbsp;Fri&nbsp;Jan&nbsp;3&nbsp;21:39:27&nbsp;UTC&nbsp;2014&nbsp;x86_64&nbsp;BOOST_LIB_VERSION=1_49<br />
+<br />
+2015-02-01T18:35:02.279+0000&nbsp;[initandlisten]&nbsp;allocator:&nbsp;tcmalloc<br />
+<br />
+2015-02-01T18:35:02.279+0000&nbsp;[initandlisten]&nbsp;options:&nbsp;{&nbsp;storage:&nbsp;{&nbsp;smallFiles:&nbsp;true&nbsp;}&nbsp;}<br />
+<br />
+2015-02-01T18:35:02.282+0000&nbsp;[initandlisten]&nbsp;journal&nbsp;dir=/data/db/journal<br />
+<br />
+2015-02-01T18:35:02.283+0000&nbsp;[initandlisten]&nbsp;recover&nbsp;:&nbsp;no&nbsp;journal&nbsp;files&nbsp;present,&nbsp;no&nbsp;recovery&nbsp;needed<br />
+<br />
+2015-02-01T18:35:02.454+0000&nbsp;[initandlisten]&nbsp;allocating&nbsp;new&nbsp;ns&nbsp;file&nbsp;/data/db/local.ns,&nbsp;filling&nbsp;with&nbsp;zeroes...<br />
+<br />
+2015-02-01T18:35:02.510+0000&nbsp;[FileAllocator]&nbsp;allocating&nbsp;new&nbsp;datafile&nbsp;/data/db/local.0,&nbsp;filling&nbsp;with&nbsp;zeroes...<br />
+<br />
+2015-02-01T18:35:02.510+0000&nbsp;[FileAllocator]&nbsp;creating&nbsp;directory&nbsp;/data/db/_tmp<br />
+<br />
+2015-02-01T18:35:02.513+0000&nbsp;[FileAllocator]&nbsp;done&nbsp;allocating&nbsp;datafile&nbsp;/data/db/local.0,&nbsp;size:&nbsp;16MB,&nbsp;&nbsp;took&nbsp;0.001&nbsp;secs<br />
+<br />
+2015-02-01T18:35:02.514+0000&nbsp;[initandlisten]&nbsp;build&nbsp;index&nbsp;on:&nbsp;local.startup_log&nbsp;properties:&nbsp;{&nbsp;v:&nbsp;1,&nbsp;key:&nbsp;{&nbsp;_id:&nbsp;1&nbsp;},&nbsp;name:&nbsp;&quot;_id_&quot;,&nbsp;ns:&nbsp;&quot;local.startup_log&quot;&nbsp;}<br />
+<br />
+2015-02-01T18:35:02.514+0000&nbsp;[initandlisten]&nbsp;&nbsp;added&nbsp;index&nbsp;to&nbsp;empty&nbsp;collection<br />
+<br />
+2015-02-01T18:35:02.514+0000&nbsp;[initandlisten]&nbsp;waiting&nbsp;for&nbsp;connections&nbsp;on&nbsp;port&nbsp;27017<br />
+<br />
+2015-02-01T18:36:02.481+0000&nbsp;[clientcursormon]&nbsp;mem&nbsp;(MB)&nbsp;res:36&nbsp;virt:246<br />
+<br />
+2015-02-01T18:36:02.481+0000&nbsp;[clientcursormon]&nbsp;&nbsp;mapped&nbsp;(incl&nbsp;journal&nbsp;view):64<br />
+<br />
+2015-02-01T18:36:02.481+0000&nbsp;[clientcursormon]&nbsp;&nbsp;connections:0<br />
+<br />
+2015-02-01T18:41:02.571+0000&nbsp;[clientcursormon]&nbsp;mem&nbsp;(MB)&nbsp;res:36&nbsp;virt:246<br />
+<br />
+2015-02-01T18:41:02.571+0000&nbsp;[clientcursormon]&nbsp;&nbsp;mapped&nbsp;(incl&nbsp;journal&nbsp;view):64<br />
+<br />
+2015-02-01T18:41:02.571+0000&nbsp;[clientcursormon]&nbsp;&nbsp;connections:0<br />
+</pre><br />
+确保数据文件已经在指定的主机目录~/db中创建。<br />
+<pre class="prettyprint">$&nbsp;ls&nbsp;-l&nbsp;~/db<br />
+<br />
+total&nbsp;32776<br />
+<br />
+drwxr-xr-x.&nbsp;2&nbsp;root&nbsp;root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17&nbsp;Feb&nbsp;&nbsp;1&nbsp;18:35&nbsp;journal<br />
+<br />
+-rw-------.&nbsp;1&nbsp;root&nbsp;root&nbsp;16777216&nbsp;Feb&nbsp;&nbsp;1&nbsp;18:35&nbsp;local.0<br />
+<br />
+-rw-------.&nbsp;1&nbsp;root&nbsp;root&nbsp;16777216&nbsp;Feb&nbsp;&nbsp;1&nbsp;18:35&nbsp;local.ns<br />
+<br />
+-rwxr-xr-x.&nbsp;1&nbsp;root&nbsp;root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;Feb&nbsp;&nbsp;1&nbsp;18:35&nbsp;mongod.lock<br />
+<br />
+drwxr-xr-x.&nbsp;2&nbsp;root&nbsp;root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;Feb&nbsp;&nbsp;1&nbsp;18:35&nbsp;_tmp<br />
+</pre><br />
+<h3>快速衡量（Quick benchmarking）</h3>主机目录数据卷比默认的分层文件系统快了多少？这当然依赖于你的环境，当然，本文也不会过多介绍性能测试的东西。但是，这里有一个快速的方法就是使用<a href="http://www.dockerone.com/mongoperf">mongoperf</a>来测试。<br />
+<pre class="prettyprint">#&nbsp;mongoperf&nbsp;process&nbsp;on&nbsp;latest&nbsp;CentOS<br />
+#&nbsp;See&nbsp;https://docs.docker.com/articles/dockerfile_best-practices/<br />
+FROM&nbsp;centos<br />
+MAINTAINER&nbsp;James&nbsp;Tan&lt;james.tan@mongodb.com&gt;<br />
+COPY&nbsp;mongodb.repo/etc/yum.repos.d/<br />
+RUN&nbsp;yum&nbsp;install-ymongodb-org-tools<br />
+WORKDIR/tmp<br />
+ENTRYPOINT[&quot;mongoperf&quot;]<br />
+</pre><br />
+这里我们使用与第一部分中案例相同的mongodb.repo，为了方便这里再做一次：<br />
+<pre class="prettyprint">[mongodb]<br />
+<br />
+name=MongoDB&nbsp;Repository<br />
+<br />
+baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/<br />
+<br />
+gpgcheck=0<br />
+<br />
+enabled=1<br />
+</pre><br />
+使用在你当前的目录如上的两个文件，构建将要运行的镜像：<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;build&nbsp;-t&nbsp;mongoperf&nbsp;.<br />
+</pre><br />
+现在衡量分层的根目录文件系统，通过运行：<br />
+<pre class="prettyprint">$&nbsp;echo&nbsp;&quot;{nThreads:32,fileSizeMB:1000,r:true,w:true}&quot;&nbsp;|&nbsp;docker&nbsp;run&nbsp;-i&nbsp;--sig-proxy=false&nbsp;mongoperf<br />
+</pre><br />
+你应该看到相似的输出如下：<br />
+<pre class="prettyprint">mongoperf<br />
+<br />
+use&nbsp;-h&nbsp;for&nbsp;help<br />
+<br />
+parsed&nbsp;options:<br />
+<br />
+{&nbsp;nThreads:&nbsp;32,&nbsp;fileSizeMB:&nbsp;1000,&nbsp;r:&nbsp;true,&nbsp;w:&nbsp;true&nbsp;}<br />
+<br />
+creating&nbsp;test&nbsp;file&nbsp;size:1000MB&nbsp;...<br />
+<br />
+testing...<br />
+<br />
+optoins:{&nbsp;nThreads:&nbsp;32,&nbsp;fileSizeMB:&nbsp;1000,&nbsp;r:&nbsp;true,&nbsp;w:&nbsp;true&nbsp;}<br />
+<br />
+wthr&nbsp;32<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;1<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+877&nbsp;ops/sec&nbsp;3&nbsp;MB/sec<br />
+<br />
+928&nbsp;ops/sec&nbsp;3&nbsp;MB/sec<br />
+<br />
+920&nbsp;ops/sec&nbsp;3&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;2<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+1211&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1158&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1172&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;4<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+1194&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1163&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1162&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;8<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+1112&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1161&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1174&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;16<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+1156&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1178&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1160&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;32<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+1244&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1205&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1211&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+</pre><br />
+<code class="prettyprint">mongoperf</code>将一直运行，你可以通过Ctrl+C退出终端。容器将一直运行在后台，因此让我们结束它。<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;ps<br />
+<br />
+CONTAINER&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAMES<br />
+<br />
+c1366d08b543&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mongoperf:latest&nbsp;&nbsp;&nbsp;&nbsp;&quot;mongoperf&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;minutes&nbsp;ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up&nbsp;3&nbsp;minutes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boring_kirch<br />
+<br />
+$&nbsp;docker&nbsp;rm&nbsp;-f&nbsp;c1366d08b543<br />
+<br />
+c1366d08b543<br />
+</pre><br />
+现在再运行下主机目录数据卷：<br />
+<pre class="prettyprint">$&nbsp;mkdir&nbsp;~/tmp<br />
+<br />
+$&nbsp;echo&nbsp;&quot;{nThreads:32,fileSizeMB:1000,r:true,w:true}&quot;&nbsp;|&nbsp;docker&nbsp;run&nbsp;-i&nbsp;--sig-proxy=false&nbsp;-v&nbsp;~/tmp:/tmp&nbsp;mongoperf<br />
+</pre><br />
+从我们设置开始，这就有相同的输出：<br />
+<pre class="prettyprint">mongoperf<br />
+<br />
+use&nbsp;-h&nbsp;for&nbsp;help<br />
+<br />
+parsed&nbsp;options:<br />
+<br />
+{&nbsp;nThreads:&nbsp;32,&nbsp;fileSizeMB:&nbsp;1000,&nbsp;r:&nbsp;true,&nbsp;w:&nbsp;true&nbsp;}<br />
+<br />
+creating&nbsp;test&nbsp;file&nbsp;size:1000MB&nbsp;...<br />
+<br />
+testing...<br />
+<br />
+optoins:{&nbsp;nThreads:&nbsp;32,&nbsp;fileSizeMB:&nbsp;1000,&nbsp;r:&nbsp;true,&nbsp;w:&nbsp;true&nbsp;}<br />
+<br />
+wthr&nbsp;32<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;1<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+1273&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1242&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1178&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;2<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+2437&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+2702&nbsp;ops/sec&nbsp;10&nbsp;MB/sec<br />
+<br />
+2546&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;4<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+2575&nbsp;ops/sec&nbsp;10&nbsp;MB/sec<br />
+<br />
+2465&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+2558&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;8<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+2471&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+3081&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+3027&nbsp;ops/sec&nbsp;11&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;16<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+3031&nbsp;ops/sec&nbsp;11&nbsp;MB/sec<br />
+<br />
+3376&nbsp;ops/sec&nbsp;13&nbsp;MB/sec<br />
+<br />
+3384&nbsp;ops/sec&nbsp;13&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;32<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+3272&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+3196&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+3385&nbsp;ops/sec&nbsp;13&nbsp;MB/sec<br />
+<br />
+...<br />
+</pre><br />
+停止并移除之前的容器。<br />
+<br/>具有32个并行读写线程结果最后一组比较，我们看到在操作每秒数量提高180%，从1211到3385 ops/s。还有的吞吐量增加了225%，从4到13 MB/s。<br />
+<h3>容器可移植性</h3>虽然上面的方式中性能得到了提升，但这并不利于容器的迁移，因为现在我们的Docker容器需要依赖外部的Docker主机上的目录，而这个目录却没有通过Docker来管理，所以我们不能简单的运行或者迁移它。最好的解决方案就是使用data-only容器，接下来，我们将详述。<br />
+<h2>数据卷：仅有数据的容器</h2><div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150322/30870e06a14c46b20186b7aea7329382.png" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150322/30870e06a14c46b20186b7aea7329382.png" class="img-polaroid" title="Screen-Shot-2015-02-01-at-17.47_.40_.png" alt="Screen-Shot-2015-02-01-at-17.47_.40_.png" /></a>
+</div>
+<br />
+仅有数据（data-only）的容器是推荐的Docker数据存储模式，它可以解耦对主机的依赖。<br />
+<br/>为了创建数据容器来作为衡量标准，我们重新使用已经存在的<code class="prettyprint">mongoperf</code>镜像：<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;create&nbsp;-v&nbsp;/tmp&nbsp;--name&nbsp;mongoperf-data&nbsp;mongoperf<br />
+<br />
+7d476bb9d3ca0cf282e2d3b9cf54e18d7bbe9b561be5d34646947032b64b4b9c<br />
+</pre><br />
+使用数据容器，重新运行测试标准，使用<code class="prettyprint">--volume-from mongoperf-data</code>参数。<br />
+<pre class="prettyprint">$&nbsp;echo&nbsp;&quot;{nThreads:32,fileSizeMB:1000,r:true,w:true}&quot;&nbsp;|&nbsp;docker&nbsp;run&nbsp;-i&nbsp;--sig-proxy=false&nbsp;--volumes-from&nbsp;mongoperf-data&nbsp;mongoperf<br />
+</pre><br />
+这个过程如下面的输出：<br />
+<pre class="prettyprint">mongoperf<br />
+<br />
+use&nbsp;-h&nbsp;for&nbsp;help<br />
+<br />
+parsed&nbsp;options:<br />
+<br />
+{&nbsp;nThreads:&nbsp;32,&nbsp;fileSizeMB:&nbsp;1000,&nbsp;r:&nbsp;true,&nbsp;w:&nbsp;true&nbsp;}<br />
+<br />
+creating&nbsp;test&nbsp;file&nbsp;size:1000MB&nbsp;...<br />
+<br />
+testing...<br />
+<br />
+optoins:{&nbsp;nThreads:&nbsp;32,&nbsp;fileSizeMB:&nbsp;1000,&nbsp;r:&nbsp;true,&nbsp;w:&nbsp;true&nbsp;}<br />
+<br />
+wthr&nbsp;32<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;1<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+1153&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1146&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+1151&nbsp;ops/sec&nbsp;4&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;2<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+1857&nbsp;ops/sec&nbsp;7&nbsp;MB/sec<br />
+<br />
+2489&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+2459&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;4<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+2518&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+2477&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+2451&nbsp;ops/sec&nbsp;9&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;8<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+2812&nbsp;ops/sec&nbsp;10&nbsp;MB/sec<br />
+<br />
+2837&nbsp;ops/sec&nbsp;11&nbsp;MB/sec<br />
+<br />
+2793&nbsp;ops/sec&nbsp;10&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+ew&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;16<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+3111&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+3319&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+3263&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+...<br />
+<br />
+new&nbsp;thread,&nbsp;total&nbsp;running&nbsp;:&nbsp;32<br />
+<br />
+read:1&nbsp;write:1<br />
+<br />
+...<br />
+<br />
+2919&nbsp;ops/sec&nbsp;11&nbsp;MB/sec<br />
+<br />
+3274&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+3306&nbsp;ops/sec&nbsp;12&nbsp;MB/sec<br />
+<br />
+...<br />
+</pre><br />
+性能方面它和主机目录数据卷方式一致。即使引用容器被移除了，仅仅包含数据的容器依然存在。我们继续运行查看：<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;ps&nbsp;-a<br />
+<br />
+CONTAINER&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAMES<br />
+<br />
+7d476bb9d3ca&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mongoperf:latest&nbsp;&nbsp;&nbsp;&nbsp;&quot;mongoperf&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;minutes&nbsp;ago&nbsp;mongoperf-data<br />
+</pre><br />
+<h2>结束</h2>回顾一下我们的<code class="prettyprint">mongod</code>容器，我们现在使用data-only容器来存储数据以获得更好的性能。<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;create&nbsp;-v&nbsp;/data/db&nbsp;--name&nbsp;mongod-data&nbsp;mongod<br />
+<br />
+$&nbsp;docker&nbsp;run&nbsp;-d&nbsp;-P&nbsp;--volumes-from&nbsp;mongod-data&nbsp;mongod&nbsp;--smallfiles<br />
+</pre><br />
+记住，你可以通过运行<code class="prettyprint">docker ps</code>看到映射的本地端口值。例如：<br />
+<pre class="prettyprint">$&nbsp;docker&nbsp;ps<br />
+<br />
+CONTAINER&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMAGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMMAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PORTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAMES<br />
+<br />
+08245e631171&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mongod:latest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;mongod&nbsp;--smallfiles&nbsp;&nbsp;&nbsp;40&nbsp;seconds&nbsp;ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up&nbsp;39&nbsp;seconds&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:49165-&gt;27017/tcp&nbsp;&nbsp;&nbsp;gloomy_meitner<br />
+<br />
+$&nbsp;mongo&nbsp;--port&nbsp;49165<br />
+<br />
+MongoDB&nbsp;shell&nbsp;version:&nbsp;2.6.7<br />
+<br />
+connecting&nbsp;to:&nbsp;127.0.0.1:49165/test<br />
+<br />
+&gt;<br />
+</pre><br />
+数据卷将最终成为Docker里的<a href="https://github.com/docker/docker/pull/8484">头等公民</a>。同时，考虑使用社区工具，像<a href="https://github.com/cpuguy83/docker-volumes">docker-volume</a>来更加轻松的管理他们。<br />
+<h3>接下来</h3>在接下来的部分，我们将研究各种各样的Docker网络参数，并细说哪种更适合多主机的MongoDB副本集。敬请期待！<br />
+<br/><strong>原文链接：<a href="http://jam.sg/blog/mongodb-docker-part-2/">MONGODB &amp; DOCKER – PART 2</a>（翻译：刘红 校对：李颖杰）</strong><br />
+<br/>＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝<br />
+<strong>译者介绍</strong><br />
+刘红，才毕业的本科小生，平时喜欢业余学习一些自己感兴趣的技术或者框架，目前正在学习Docker，也在着手翻译Docker官方文档，如果对翻译Docker官方文档感兴趣的朋友可以联系译者哟。																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_more_269'), $('#detail_269')); return false;">收起阅读 »</a>
+								        											</div>
+									</div>
+								</div>
+								<div class="mod-footer clearfix">
+									<span class="pull-right more-operate text-color-999">
+										刚百 发表于 : 2015-03-22 21:25
+										<a class="text-color-999" href="http://www.dockerone.com/article/269"><i class="icon icon-comment"></i> 评论 (2)</a>
+										<a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
+											<i class="icon icon-share"></i> 分享										</a>
+										<div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+											<ul class="aw-dropdown-list">
+												<li><a onclick="AWS.User.share_out('tsina', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/269');"><i class="icon icon-weibo"></i> 微博</a></li>
+												<li><a onclick="AWS.User.share_out('qzone', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/269');"><i class="icon icon-qzone"></i> QZONE</a></li>
+												<li><a onclick="AWS.User.share_out('weixin', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/269');"><i class="icon icon-wechat"></i> 微信</a></li>
+											</ul>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+												<div class="aw-item">
+							<a class="aw-user-name hidden-xs" href="http://www.dockerone.com/people/wonderflow">
+								<img alt="" src="http://dockerone.com/uploads/avatar/000/00/07/67_avatar_mid.jpg" />
+							</a>
+							<div class="aw-content">
+								<div class="mod-body">
+									<h2><a href="http://www.dockerone.com/article/267">减少使用Java应用服务器，迎接Docker容器</a></h2>
+									<div class="aw-topic-bar">
+										<div class="tag-bar clearfix">
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Java" class="text" data-id="28">Java</a>
+											</span>
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Docker" class="text" data-id="7">Docker</a>
+											</span>
+																					</div>
+									</div>
+									<div class="content-wrap">
+										<div class="content" id="detail_267">
+											<div class="hide-content markitup-box">
+												<br/>【编者的话】随着Docker的发展，越来越多的应用开发者开始使用Docker。James Strachan写了一篇有关Java开发者如何使用Docker进行轻量级快速开发的文章。他告诉我们，使用Docker和服务发现的机制，可以有效减轻Java运维人员的负担，进行项目的快速启动和持续迭代。<br />
+<br/>多年来，Java生态系统一直在使用应用服务器。Java应用服务器（如Servlet Engine、JEE或OSGi）是一个可以作为最小部署单元（如jar/war/ear/bundle等）进行部署和卸载Java代码的JVM（Java虚拟机）进程。所以一个JVM进程可以在运行的过程中更换运行在其上的代码。通常Java应用服务器提供存放文件的目录或者REST/JMX 接口來修改正在运行的部署单元（Java代码）。<br />
+<br/>由于内存资源在过去是相当宝贵的，所以把所有的Java代码放到同一个JVM中去运行来减少多个进程带来的内存碎片具有重要的意义。<br />
+<br/>多年来，在Java生产环境中，通常没有人真正在运行着的JVM中卸载Java代码，因为这样做很容易造成内存泄漏（线程、内存、数据库链接、socket、正在运行的代码等导致）。所以在生产环境中升级应用的较好做法是并行地在一个新的应用服务器中启动应用程序；把流量从旧的应用实例迁移到新的应用实例上，当旧的应用实例结束正在处理的请求时，就可以被停止。<br />
+<br/>从概念上说是卸载了旧的程序，部署了新的程序；但是实际上是启动了一个新的进程，并把流量迁移到新的进程上，然后结束那个旧进程。<br />
+<br/>目前，有向微服务发展的趋势，每个进程做好一件事。多年来，使用应用服务器的最佳实践方式，一直都是在每一个JVM中部署尽量少的部署单元。假如你把所有的服务（部署单元）部署到同一个JVM中；如果要升级这些服务中的一个，你就要关闭这个JVM进程，这就会影响到其它的服务。所以把每个应用单独部署在不同的JVM进程中更安全和敏捷，这样在任何时候升级一个服务都不会影响到其他的服务。<br />
+<br/>多个独立的进程比一个庞大的进程更容易监控，也更容易了解哪个服务使用了多少内存、网络、硬盘和CPU等。<br />
+<h4>Docker如何带来改变</h4>Docker容器提供了一种理想的方式来打包应用，使得应用在Linux机器上部署更加方便；对不同的操作环境和不同的程序都可以使用同一个Docker镜像而不需要改变；容器之间彼此隔离，并且通过cgroups对IO、内存、CPU等的用量进行限制。所有在Linux上可以使用的技术（Java、python、ruby、nodejs、golang等）都可以在Docker容器中很好的运行。<br />
+<br/>Docker容器最大的优点之一就是你可以以重复的方式在任何机器上同时启动多个实例，因为这些实例都是基于同一个不变的、可重复使用的镜像。每个容器实例都可以把自己的持久状态挂在在卷上，但是它们的代码(甚至配置)都来自同一个不变的镜像。<br />
+<br/>所以在Docker上使用Java应用服务器的方式是为应用服务器和你想在生产环境中运行的部署单元创建一个镜像。<br />
+<br/>在升级服务的时候不再需要在webapps/deploy目录下删除掉一个WAR包或者调用 REST/JMX接口，或者任何其它方式，你只需要创建一个包含新的部署单元的镜像，并且运行这个镜像。<br />
+<br/>此外，Java应用服务器不再需要在运行时部署和卸载新的代码；不再需要监控部署目录的变化或者监听来自REST/JMX接口的更改部署的请求；只需要在启动的时候启动镜像中的代码。<br />
+<br/>所以在Docker的世界中，Java应用服务器的理念（可以部署和卸载程序的动态JVM）正在逐渐消亡。<br />
+<br/>在Docker中使用应用服务的最好方式是把它们当作不可变的镜像；运行在进程中的Java代码就不再需要经常变动。新版本容器的滚动升级就可以在应用服务器之外完成（例如，通过<a href="http://kubernetes.io/">kubernetes</a>滚动升级，然后在容器前使用负载均衡）。<br />
+<h4>配置管理</h4>自采用应用服务器以后，在Java生态环境中，应用被创建成一个不可变的二进制部署单元（jars、wars、ears、bundles等），发布一次就可以在不同的环境中使用。为了做到在不同的环境中运行，我们通常通过应用服务来查找资源（例如，在JEE环境下使用JNDI查找）比如查找数据库的位置或者消息代理。所以就会有单独的配置好的应用服务器集群来部署你的程序（假设应用服务器都配置正确）。<br />
+<br/>尽管在不同的操作系统，Java版本，应用服务器版本或者不匹配的配置等不同环境下容易混乱，在初步阶段程序可能还正常运行，但是如果不够仔细的话，生产环境下可能会运行出错。<br />
+<br/>而采用Docker的方法，就是把镜像不变的理念延伸到操作系统和应用服务器上；所以根据操作系统、java环境，应用服务器和部署单元制定的同一个二进制镜像可以在每一个特定环境下运行。所以在一个特定环境下不存在应用服务器配置错误的问题，因为同一个二进制镜像可以在所有环境下运行。<br />
+<br/>为了做到这一点，在每一个环境下都有服务发现就显得极其有用，这使得同一个镜像在每个环境下都使用正确的配置并且准确无误地运行变得简单。例如，像<a href="http://fabric8.io/v2/services.html">kubernetes服务发现</a>让在所有环境使用同一个二进制镜像并且使用服务发现连接数据库、消息中间件变得可行。<br />
+<h4>总结</h4>所以，这就意味着Java应用服务器没用了吗？在Docker的世界里，确实再也没有必要在生产环境中运行着的Java进程中热部署Java代码了。但是在开发过程中，有能力在运行的实例中热部署一份代码依旧非常有用。（尽管公平的说，你可以使用像JRebel这样的工具在Java应用做到同样的事情，大多数使用IDE调试的用户就用这种方法）<br />
+<br/>所以我想说，Java应用服务器渐渐变得更像烧录到固定镜像中的一个框架，然后在外部云中进行管理（比如通过Kubernetes）。云（如Kubernetes和Docker）在许多方面接管了很多Java应用服务器原先做的功能，并且新镜像的滚动升级对所有技术来说都是需要的（包括java/golang/nodejs/python/ruby等等）。<br />
+<br/>尽管Java用户仍然想要Java应用服务器提供的一些服务，如servlet引擎、依赖代码注入、事务处理、消息处理等等。但是你再也无需动态的在一个运行着的Java虚拟机中清理原先部署上去的代码了，这样你就可以轻易的在Java应用中植入一个servlet引擎。像Spring Boot这样的方法向你展示了如何只通过依赖代码注入和一个扁平化的类载入器，就足以胜任大多数应用服务器的功能。<br />
+<br/>作为一个开发者，在用Java应用服务器工作时遇到最大问题之一就在于载入Java类时的复杂性，我相信在这一点上我们都讨厌Java的类载入器问题。<br />
+<br/>尽管你可以通过使用BOM文件在项目中导入一个maven构建的依赖关系来修复这些问题，但是为JEE服务开发者们屏蔽jar包的具体实现依然有一定的价值，你无需再搞清复杂的类载入器的树关系或者图关系。就算类路径关系简单，你还有可能面临版本冲突问题。所以如果有办法隔离类载入器会非常有用。不过有时候使用一个jar包的不同版本也意味着编码上可能有些问题，是不是意外着是时候把代码重构一下，变成两个独立的服务，这样就可以有一个简洁漂亮扁平的类载入器？<br />
+<br/>如果一个Java应用服务器进程现在只启动了一个静态已知的Java代码集合，应用服务器的想法会变成一个帮助你进行代码注入以及包含你所需模块服务的方法，这就听起来更像是一个框架而非我们原本意外的一个Java 应用服务器。<br />
+<br/>许多Java开发者学会了如何使用应用服务器，并且在Docker的世界中仍会继续使用，这一点很好。但是与此同时我也看到，他们对此的使用真在消减，因为许多应用服务器本来在过去帮我们完成的事情，现在Docker、Kubernetes及相关框架可以用一种更简单、更高效的方式帮我们完成。<br />
+<br/>Docker和云给我们带来的一个巨大的好处就是，开发者可以选择他们想要使用的技术，他们可以为合适的工作选择适当的工具，并且可以把他们的技术用同样的方法进行管理和提高给用户，无论使用的是何种语言何种框架。你可以在最初使用你知道的技术，随着时代的变化迁移到更轻量级的替代中。<br />
+<br/>在<a href="http://fabric8.io/">fabric8</a>项目中，我们确实不知道你想要使用何种应用服务器或者框架，所以Camel Boot、CDI 、Spring Boot  、 Karaf 、Tomcat 、 Vertx、Wildfly这些我们在<a href="http://fabric8.io/v2/quickstarts.html">quickstarts</a>中都支持。感谢Kubernetes，我们可以提高同样的供应、管理以及工具化经验，无论你选择的应用服务器或框架到底是什么。举个例子，如果你使用<a href="http://fabric8.io/v2/overview.html">fabric8 V2</a>开始一个新的Camel项目，我们强烈建议你使用<a href="http://camel.apache.org/camel-boot.html">Camel Boot</a>工具或者尝试使用<a href="https://github.com/fabric8io/quickstarts/tree/master/quickstarts/spring-boot">Spring Boot Quickstarts</a>。<br />
+<br/>我越来越多的看见Java用户选择像Camel Boot、CDI、Dropwizard、Vertx或者Spring Boot 这些更轻量级的框架，并且随着时间越来越少使用Java应用服务器。尽管我们依然需要使用依赖注入和框架。<br />
+<br/><strong>原文链接：<a href="https://medium.com/@jstrachan/the-decline-of-java-application-servers-when-using-docker-containers-edbe032e1f30">the decline of Java application servers when using docker containers</a>（翻译：房伟利）</strong>
+											</div>
+
+																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_267'), $('#detail_more_267')); return false;">继续阅读 »</a>
+								        											</div>
+
+										<div class="content markitup-box hide" id="detail_more_267">
+											<br/>【编者的话】随着Docker的发展，越来越多的应用开发者开始使用Docker。James Strachan写了一篇有关Java开发者如何使用Docker进行轻量级快速开发的文章。他告诉我们，使用Docker和服务发现的机制，可以有效减轻Java运维人员的负担，进行项目的快速启动和持续迭代。<br />
+<br/>多年来，Java生态系统一直在使用应用服务器。Java应用服务器（如Servlet Engine、JEE或OSGi）是一个可以作为最小部署单元（如jar/war/ear/bundle等）进行部署和卸载Java代码的JVM（Java虚拟机）进程。所以一个JVM进程可以在运行的过程中更换运行在其上的代码。通常Java应用服务器提供存放文件的目录或者REST/JMX 接口來修改正在运行的部署单元（Java代码）。<br />
+<br/>由于内存资源在过去是相当宝贵的，所以把所有的Java代码放到同一个JVM中去运行来减少多个进程带来的内存碎片具有重要的意义。<br />
+<br/>多年来，在Java生产环境中，通常没有人真正在运行着的JVM中卸载Java代码，因为这样做很容易造成内存泄漏（线程、内存、数据库链接、socket、正在运行的代码等导致）。所以在生产环境中升级应用的较好做法是并行地在一个新的应用服务器中启动应用程序；把流量从旧的应用实例迁移到新的应用实例上，当旧的应用实例结束正在处理的请求时，就可以被停止。<br />
+<br/>从概念上说是卸载了旧的程序，部署了新的程序；但是实际上是启动了一个新的进程，并把流量迁移到新的进程上，然后结束那个旧进程。<br />
+<br/>目前，有向微服务发展的趋势，每个进程做好一件事。多年来，使用应用服务器的最佳实践方式，一直都是在每一个JVM中部署尽量少的部署单元。假如你把所有的服务（部署单元）部署到同一个JVM中；如果要升级这些服务中的一个，你就要关闭这个JVM进程，这就会影响到其它的服务。所以把每个应用单独部署在不同的JVM进程中更安全和敏捷，这样在任何时候升级一个服务都不会影响到其他的服务。<br />
+<br/>多个独立的进程比一个庞大的进程更容易监控，也更容易了解哪个服务使用了多少内存、网络、硬盘和CPU等。<br />
+<h4>Docker如何带来改变</h4>Docker容器提供了一种理想的方式来打包应用，使得应用在Linux机器上部署更加方便；对不同的操作环境和不同的程序都可以使用同一个Docker镜像而不需要改变；容器之间彼此隔离，并且通过cgroups对IO、内存、CPU等的用量进行限制。所有在Linux上可以使用的技术（Java、python、ruby、nodejs、golang等）都可以在Docker容器中很好的运行。<br />
+<br/>Docker容器最大的优点之一就是你可以以重复的方式在任何机器上同时启动多个实例，因为这些实例都是基于同一个不变的、可重复使用的镜像。每个容器实例都可以把自己的持久状态挂在在卷上，但是它们的代码(甚至配置)都来自同一个不变的镜像。<br />
+<br/>所以在Docker上使用Java应用服务器的方式是为应用服务器和你想在生产环境中运行的部署单元创建一个镜像。<br />
+<br/>在升级服务的时候不再需要在webapps/deploy目录下删除掉一个WAR包或者调用 REST/JMX接口，或者任何其它方式，你只需要创建一个包含新的部署单元的镜像，并且运行这个镜像。<br />
+<br/>此外，Java应用服务器不再需要在运行时部署和卸载新的代码；不再需要监控部署目录的变化或者监听来自REST/JMX接口的更改部署的请求；只需要在启动的时候启动镜像中的代码。<br />
+<br/>所以在Docker的世界中，Java应用服务器的理念（可以部署和卸载程序的动态JVM）正在逐渐消亡。<br />
+<br/>在Docker中使用应用服务的最好方式是把它们当作不可变的镜像；运行在进程中的Java代码就不再需要经常变动。新版本容器的滚动升级就可以在应用服务器之外完成（例如，通过<a href="http://kubernetes.io/">kubernetes</a>滚动升级，然后在容器前使用负载均衡）。<br />
+<h4>配置管理</h4>自采用应用服务器以后，在Java生态环境中，应用被创建成一个不可变的二进制部署单元（jars、wars、ears、bundles等），发布一次就可以在不同的环境中使用。为了做到在不同的环境中运行，我们通常通过应用服务来查找资源（例如，在JEE环境下使用JNDI查找）比如查找数据库的位置或者消息代理。所以就会有单独的配置好的应用服务器集群来部署你的程序（假设应用服务器都配置正确）。<br />
+<br/>尽管在不同的操作系统，Java版本，应用服务器版本或者不匹配的配置等不同环境下容易混乱，在初步阶段程序可能还正常运行，但是如果不够仔细的话，生产环境下可能会运行出错。<br />
+<br/>而采用Docker的方法，就是把镜像不变的理念延伸到操作系统和应用服务器上；所以根据操作系统、java环境，应用服务器和部署单元制定的同一个二进制镜像可以在每一个特定环境下运行。所以在一个特定环境下不存在应用服务器配置错误的问题，因为同一个二进制镜像可以在所有环境下运行。<br />
+<br/>为了做到这一点，在每一个环境下都有服务发现就显得极其有用，这使得同一个镜像在每个环境下都使用正确的配置并且准确无误地运行变得简单。例如，像<a href="http://fabric8.io/v2/services.html">kubernetes服务发现</a>让在所有环境使用同一个二进制镜像并且使用服务发现连接数据库、消息中间件变得可行。<br />
+<h4>总结</h4>所以，这就意味着Java应用服务器没用了吗？在Docker的世界里，确实再也没有必要在生产环境中运行着的Java进程中热部署Java代码了。但是在开发过程中，有能力在运行的实例中热部署一份代码依旧非常有用。（尽管公平的说，你可以使用像JRebel这样的工具在Java应用做到同样的事情，大多数使用IDE调试的用户就用这种方法）<br />
+<br/>所以我想说，Java应用服务器渐渐变得更像烧录到固定镜像中的一个框架，然后在外部云中进行管理（比如通过Kubernetes）。云（如Kubernetes和Docker）在许多方面接管了很多Java应用服务器原先做的功能，并且新镜像的滚动升级对所有技术来说都是需要的（包括java/golang/nodejs/python/ruby等等）。<br />
+<br/>尽管Java用户仍然想要Java应用服务器提供的一些服务，如servlet引擎、依赖代码注入、事务处理、消息处理等等。但是你再也无需动态的在一个运行着的Java虚拟机中清理原先部署上去的代码了，这样你就可以轻易的在Java应用中植入一个servlet引擎。像Spring Boot这样的方法向你展示了如何只通过依赖代码注入和一个扁平化的类载入器，就足以胜任大多数应用服务器的功能。<br />
+<br/>作为一个开发者，在用Java应用服务器工作时遇到最大问题之一就在于载入Java类时的复杂性，我相信在这一点上我们都讨厌Java的类载入器问题。<br />
+<br/>尽管你可以通过使用BOM文件在项目中导入一个maven构建的依赖关系来修复这些问题，但是为JEE服务开发者们屏蔽jar包的具体实现依然有一定的价值，你无需再搞清复杂的类载入器的树关系或者图关系。就算类路径关系简单，你还有可能面临版本冲突问题。所以如果有办法隔离类载入器会非常有用。不过有时候使用一个jar包的不同版本也意味着编码上可能有些问题，是不是意外着是时候把代码重构一下，变成两个独立的服务，这样就可以有一个简洁漂亮扁平的类载入器？<br />
+<br/>如果一个Java应用服务器进程现在只启动了一个静态已知的Java代码集合，应用服务器的想法会变成一个帮助你进行代码注入以及包含你所需模块服务的方法，这就听起来更像是一个框架而非我们原本意外的一个Java 应用服务器。<br />
+<br/>许多Java开发者学会了如何使用应用服务器，并且在Docker的世界中仍会继续使用，这一点很好。但是与此同时我也看到，他们对此的使用真在消减，因为许多应用服务器本来在过去帮我们完成的事情，现在Docker、Kubernetes及相关框架可以用一种更简单、更高效的方式帮我们完成。<br />
+<br/>Docker和云给我们带来的一个巨大的好处就是，开发者可以选择他们想要使用的技术，他们可以为合适的工作选择适当的工具，并且可以把他们的技术用同样的方法进行管理和提高给用户，无论使用的是何种语言何种框架。你可以在最初使用你知道的技术，随着时代的变化迁移到更轻量级的替代中。<br />
+<br/>在<a href="http://fabric8.io/">fabric8</a>项目中，我们确实不知道你想要使用何种应用服务器或者框架，所以Camel Boot、CDI 、Spring Boot  、 Karaf 、Tomcat 、 Vertx、Wildfly这些我们在<a href="http://fabric8.io/v2/quickstarts.html">quickstarts</a>中都支持。感谢Kubernetes，我们可以提高同样的供应、管理以及工具化经验，无论你选择的应用服务器或框架到底是什么。举个例子，如果你使用<a href="http://fabric8.io/v2/overview.html">fabric8 V2</a>开始一个新的Camel项目，我们强烈建议你使用<a href="http://camel.apache.org/camel-boot.html">Camel Boot</a>工具或者尝试使用<a href="https://github.com/fabric8io/quickstarts/tree/master/quickstarts/spring-boot">Spring Boot Quickstarts</a>。<br />
+<br/>我越来越多的看见Java用户选择像Camel Boot、CDI、Dropwizard、Vertx或者Spring Boot 这些更轻量级的框架，并且随着时间越来越少使用Java应用服务器。尽管我们依然需要使用依赖注入和框架。<br />
+<br/><strong>原文链接：<a href="https://medium.com/@jstrachan/the-decline-of-java-application-servers-when-using-docker-containers-edbe032e1f30">the decline of Java application servers when using docker containers</a>（翻译：房伟利）</strong>																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_more_267'), $('#detail_267')); return false;">收起阅读 »</a>
+								        											</div>
+									</div>
+								</div>
+								<div class="mod-footer clearfix">
+									<span class="pull-right more-operate text-color-999">
+										wonderflow 发表于 : 2015-03-20 23:05
+										<a class="text-color-999" href="http://www.dockerone.com/article/267"><i class="icon icon-comment"></i> 评论 (0)</a>
+										<a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
+											<i class="icon icon-share"></i> 分享										</a>
+										<div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+											<ul class="aw-dropdown-list">
+												<li><a onclick="AWS.User.share_out('tsina', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/267');"><i class="icon icon-weibo"></i> 微博</a></li>
+												<li><a onclick="AWS.User.share_out('qzone', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/267');"><i class="icon icon-qzone"></i> QZONE</a></li>
+												<li><a onclick="AWS.User.share_out('weixin', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/267');"><i class="icon icon-wechat"></i> 微信</a></li>
+											</ul>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+												<div class="aw-item">
+							<a class="aw-user-name hidden-xs" href="http://www.dockerone.com/people/jimmyxian">
+								<img alt="" src="http://dockerone.com/uploads/avatar/000/00/07/12_avatar_mid.jpg" />
+							</a>
+							<div class="aw-content">
+								<div class="mod-body">
+									<h2><a href="http://www.dockerone.com/article/266">Docker仓库index服务浅析</a></h2>
+									<div class="aw-topic-bar">
+										<div class="tag-bar clearfix">
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Docker" class="text" data-id="7">Docker</a>
+											</span>
+																					</div>
+									</div>
+									<div class="content-wrap">
+										<div class="content" id="detail_266">
+											<div class="hide-content markitup-box">
+												<br/>【编者的话】本文对Docker的index服务进行了详细的介绍。index服务主要提供镜像索引以及用户认证的功能。当下载一个镜像的时候，首先会去index服务上做认证，然后查找镜像所在的Registry，最终Docker再从Registry下载镜像.....<br />
+<br/><h4>Docker index服务概述</h4>index顾名思义“索引”，index服务主要提供镜像索引以及用户认证的功能。当下载一个镜像的时候，首先会去index服务上做认证，然后查找镜像所在的Registry，最终Docker再从Registry下载镜像。不同镜像可以保存在不同的Registry服务上，其索引信息都放在index服务上，最终达到负载均衡的能力。<br />
+<br/>开源社区Docker仓库，有两种运行模式，具体如下：<br />
+<ol><li><strong>standalone=true</strong>。在这种模式下，仓库自身提供了简单的index服务，在实现过程中index只是实现了简单的索引功能，没有实现用户认证功能。</li><li><strong>standalone=false</strong>。在这种模式下，需要配置index的服务访问点，需自行实现index服务。</li></ol><br />
+<br/><h4>index服务对外提供的接口</h4>在<code class="prettyprint">docker push</code>的流程中会调用到，其作用是创建一个仓库。创建之前会对用户密码以及权限进行验证，如果合法，则最终会返回一个token至Docker客户端。<br />
+<pre class="prettyprint">PUT&nbsp;/v1/repositories/(namespace)/(repo_name)/<br />
+</pre><br />
+删除一个repository，删除之前会对用户密码以及权限进行验证。<br />
+<pre class="prettyprint">DELETE&nbsp;/v1/repositories/(namespace)/(repo_name)/<br />
+</pre><br />
+在<code class="prettyprint">docker push</code>流程中会调用到，其作用是更新repository对应的image列表，更新之前会校验携带的token。<br />
+<pre class="prettyprint">PUT&nbsp;/v1/repositories/(namespace)/(repo_name)/images<br />
+</pre><br />
+在<code class="prettyprint">docker pull</code>流程中会调用到，其作用是获取repository对应的image列表。获取之前会对用户密码以及权限进行验证。<br />
+<pre class="prettyprint">GET&nbsp;/v1/repositories/(namespace)/(repo_name)/images<br />
+</pre><br />
+校验token的合法性。<br />
+<pre class="prettyprint">PUT&nbsp;/v1/repositories/(namespace)/(repo_name)/auth<br />
+</pre><br />
+<code class="prettyprint">docker login</code>会调用到此接口，用来验证用户的合法性。<br />
+<pre class="prettyprint">GET&nbsp;/v1/users/<br />
+</pre><br />
+<code class="prettyprint">docker login</code>会调用到此接口，可用来创建一个用户。<br />
+<pre class="prettyprint">POST&nbsp;/v1/users/<br />
+</pre><br />
+用来更新用户信息<br />
+<pre class="prettyprint">PUT&nbsp;/v1/users/username/<br />
+</pre><br />
+<h4>index服务已有的开源实现</h4><a href="https://github.com/ekristen/docker-index" rel="nofollow" target="_blank">https://github.com/ekristen/docker-index</a>，采用Node.js实现，其中实现了一套简单的用户管理。<br />
+<br/><strong>原文地址：<a href="http://openstack.wiaapp.cn">Docker仓库index服务浅析</a>（感谢@线超博 的投稿）</strong>
+											</div>
+
+																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_266'), $('#detail_more_266')); return false;">继续阅读 »</a>
+								        											</div>
+
+										<div class="content markitup-box hide" id="detail_more_266">
+											<br/>【编者的话】本文对Docker的index服务进行了详细的介绍。index服务主要提供镜像索引以及用户认证的功能。当下载一个镜像的时候，首先会去index服务上做认证，然后查找镜像所在的Registry，最终Docker再从Registry下载镜像.....<br />
+<br/><h4>Docker index服务概述</h4>index顾名思义“索引”，index服务主要提供镜像索引以及用户认证的功能。当下载一个镜像的时候，首先会去index服务上做认证，然后查找镜像所在的Registry，最终Docker再从Registry下载镜像。不同镜像可以保存在不同的Registry服务上，其索引信息都放在index服务上，最终达到负载均衡的能力。<br />
+<br/>开源社区Docker仓库，有两种运行模式，具体如下：<br />
+<ol><li><strong>standalone=true</strong>。在这种模式下，仓库自身提供了简单的index服务，在实现过程中index只是实现了简单的索引功能，没有实现用户认证功能。</li><li><strong>standalone=false</strong>。在这种模式下，需要配置index的服务访问点，需自行实现index服务。</li></ol><br />
+<br/><h4>index服务对外提供的接口</h4>在<code class="prettyprint">docker push</code>的流程中会调用到，其作用是创建一个仓库。创建之前会对用户密码以及权限进行验证，如果合法，则最终会返回一个token至Docker客户端。<br />
+<pre class="prettyprint">PUT&nbsp;/v1/repositories/(namespace)/(repo_name)/<br />
+</pre><br />
+删除一个repository，删除之前会对用户密码以及权限进行验证。<br />
+<pre class="prettyprint">DELETE&nbsp;/v1/repositories/(namespace)/(repo_name)/<br />
+</pre><br />
+在<code class="prettyprint">docker push</code>流程中会调用到，其作用是更新repository对应的image列表，更新之前会校验携带的token。<br />
+<pre class="prettyprint">PUT&nbsp;/v1/repositories/(namespace)/(repo_name)/images<br />
+</pre><br />
+在<code class="prettyprint">docker pull</code>流程中会调用到，其作用是获取repository对应的image列表。获取之前会对用户密码以及权限进行验证。<br />
+<pre class="prettyprint">GET&nbsp;/v1/repositories/(namespace)/(repo_name)/images<br />
+</pre><br />
+校验token的合法性。<br />
+<pre class="prettyprint">PUT&nbsp;/v1/repositories/(namespace)/(repo_name)/auth<br />
+</pre><br />
+<code class="prettyprint">docker login</code>会调用到此接口，用来验证用户的合法性。<br />
+<pre class="prettyprint">GET&nbsp;/v1/users/<br />
+</pre><br />
+<code class="prettyprint">docker login</code>会调用到此接口，可用来创建一个用户。<br />
+<pre class="prettyprint">POST&nbsp;/v1/users/<br />
+</pre><br />
+用来更新用户信息<br />
+<pre class="prettyprint">PUT&nbsp;/v1/users/username/<br />
+</pre><br />
+<h4>index服务已有的开源实现</h4><a href="https://github.com/ekristen/docker-index" rel="nofollow" target="_blank">https://github.com/ekristen/docker-index</a>，采用Node.js实现，其中实现了一套简单的用户管理。<br />
+<br/><strong>原文地址：<a href="http://openstack.wiaapp.cn">Docker仓库index服务浅析</a>（感谢@线超博 的投稿）</strong>																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_more_266'), $('#detail_266')); return false;">收起阅读 »</a>
+								        											</div>
+									</div>
+								</div>
+								<div class="mod-footer clearfix">
+									<span class="pull-right more-operate text-color-999">
+										jimmyxian 发表于 : 2015-03-20 21:53
+										<a class="text-color-999" href="http://www.dockerone.com/article/266"><i class="icon icon-comment"></i> 评论 (0)</a>
+										<a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
+											<i class="icon icon-share"></i> 分享										</a>
+										<div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+											<ul class="aw-dropdown-list">
+												<li><a onclick="AWS.User.share_out('tsina', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/266');"><i class="icon icon-weibo"></i> 微博</a></li>
+												<li><a onclick="AWS.User.share_out('qzone', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/266');"><i class="icon icon-qzone"></i> QZONE</a></li>
+												<li><a onclick="AWS.User.share_out('weixin', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/266');"><i class="icon icon-wechat"></i> 微信</a></li>
+											</ul>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+												<div class="aw-item">
+							<a class="aw-user-name hidden-xs" href="http://www.dockerone.com/people/%E5%B4%94%E5%A9%A7%E9%9B%AF">
+								<img alt="" src="http://dockerone.com/uploads/avatar/000/00/01/88_avatar_mid.jpg" />
+							</a>
+							<div class="aw-content">
+								<div class="mod-body">
+									<h2><a href="http://www.dockerone.com/article/265">用Git子模块和Docker Compose实现高效开发工作流</a></h2>
+									<div class="aw-topic-bar">
+										<div class="tag-bar clearfix">
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Docker" class="text" data-id="7">Docker</a>
+											</span>
+																					</div>
+									</div>
+									<div class="content-wrap">
+										<div class="content" id="detail_265">
+											<div class="hide-content markitup-box">
+												<br/>【编者的话】搭建开发环境一直让程序员们头疼，本文使用Git子模块和Docker Compose实现高效率的开发工作流，让程序员能够轻松搭建出开发环境，把精力投入到需要开发的应用本身。<br />
+<h4>问题</h4>自我们从Continuous Software雇佣了第一位远程开发的程序员以来，我们就意识到精简开发工作流的重要性。当新入职的程序员接手由很多应用组成的复杂项目时，我们想尽量避免以下这几个问题：<br />
+<ul><li>缺少stack模块：Node.js、PHP、PostgreSQL等</li><li>不清楚项目组件/应用的总体概况</li><li>本地配置冲突：监听端口、数据库配置等</li></ul><br />
+<br/>此外，就我个人经验而言，我们这样的程序员太容易找不着北了。曾经，我入职一个公司的第一整天都花在搭建开发环境上，试图去理解所有的东西怎么才能一起工作，而无法直接就去理解公司开发的应用到底是怎么工作的。<br />
+<h4>方案</h4>在具体介绍如何解决上述问题之前，我先介绍下我们项目使用的开发工作流。<br />
+<br/>我们的每个项目都在Bitbucket上有自己的Team（和GitHub上的Organization对应）。每个应用都会在Team下创建一个Repository（比如，<code class="prettyprint">api</code>、<code class="prettyprint">dashboard</code>、<code class="prettyprint">cpanel</code>）。在这些子模块之上，创建了一个名为<code class="prettyprint">development</code>的Repository。子模块的同一层级有<code class="prettyprint">README.md</code>和<code class="prettyprint">docker-compose.yml</code>两个文件。<br />
+<pre class="prettyprint">kytwb@continuous:~/path/to/&lt;project&gt;/$&nbsp;ls&nbsp;-la<br />
+total&nbsp;40<br />
+drwxrwxr-x&nbsp;11&nbsp;kytwb&nbsp;amine&nbsp;4096&nbsp;Mar&nbsp;14&nbsp;16:30&nbsp;.<br />
+drwxr-xr-x&nbsp;&nbsp;4&nbsp;kytwb&nbsp;amine&nbsp;4096&nbsp;Nov&nbsp;&nbsp;1&nbsp;20:17&nbsp;..<br />
+drwxr-xr-x&nbsp;20&nbsp;kytwb&nbsp;amine&nbsp;4096&nbsp;Mar&nbsp;11&nbsp;14:24&nbsp;api<br />
+drwxr-xr-x&nbsp;11&nbsp;kytwb&nbsp;amine&nbsp;4096&nbsp;Mar&nbsp;&nbsp;3&nbsp;13:21&nbsp;cpanel<br />
+drwxr-xr-x&nbsp;10&nbsp;kytwb&nbsp;amine&nbsp;4096&nbsp;Mar&nbsp;12&nbsp;11:37&nbsp;dashboard<br />
+-rw-r--r--&nbsp;&nbsp;1&nbsp;kytwb&nbsp;amine&nbsp;2302&nbsp;Mar&nbsp;&nbsp;2&nbsp;15:28&nbsp;docker-compose.yml<br />
+drwxrwxr-x&nbsp;&nbsp;9&nbsp;kytwb&nbsp;amine&nbsp;4096&nbsp;Mar&nbsp;14&nbsp;16:30&nbsp;.git<br />
+-rw-r--r--&nbsp;&nbsp;1&nbsp;kytwb&nbsp;amine&nbsp;&nbsp;648&nbsp;Dec&nbsp;22&nbsp;17:20&nbsp;.gitmodules<br />
+-rw-r--r--&nbsp;&nbsp;1&nbsp;kytwb&nbsp;amine&nbsp;1706&nbsp;Dec&nbsp;17&nbsp;16:41&nbsp;README.md<br />
+</pre><br />
+当新程序员加入项目时，只需在Bitbucket上浏览<code class="prettyprint">development</code>repository，根据<code class="prettyprint">README.md</code>的步骤就可以快速搭建环境。具体步骤如下所示：<br />
+<pre class="prettyprint">$&nbsp;git&nbsp;-v<br />
+$&nbsp;docker&nbsp;-v<br />
+$&nbsp;docker-compose&nbsp;-v<br />
+$&nbsp;git&nbsp;clone&nbsp;git@bitbucket.com:&lt;project&gt;/development.git&nbsp;&lt;project&gt;&nbsp;&amp;&amp;&nbsp;cd&nbsp;&lt;project&gt;<br />
+$&nbsp;git&nbsp;submodule&nbsp;init&nbsp;&amp;&amp;&nbsp;git&nbsp;submodule&nbsp;update<br />
+$&nbsp;git&nbsp;submodule&nbsp;foreach&nbsp;npm&nbsp;install<br />
+$&nbsp;docker-compose&nbsp;up&nbsp;-d<br />
+</pre><br />
+至此，一切就都已经搭建好，并运行在本地机器上了。<br />
+<h4>实现原理</h4>本章介绍我们是如何实现上述工作流的。<br />
+<h4>前提条件</h4><pre class="prettyprint">$&nbsp;git&nbsp;-v<br />
+$&nbsp;docker&nbsp;-v<br />
+$&nbsp;docker-compose<br />
+</pre><br />
+由于我们的开发堆栈完全基于Docker，所以，程序员需要先安装Docker。这时他们不需要特别熟悉Docker，只需要在开发时使用Docker即可，我们间接地将他们引入到了容器的世界，之后会以此为桥梁向他们解释如何使用Docker实现持续集成、持续交付等等。<code class="prettyprint">README.md</code>中并没有详细介绍如何<a href="https://docs.docker.com/installation/">安装Docker</a>，因为安装很简单。<br />
+<br/>当docker-compose还叫<a href="http://fig.sh/">Fig</a>的时候我们就已经用它来编排开发堆栈里的容器。之后Docker收购了Fig，重命名为Docker Compose。有人提议将Docker Compose合并到Docker代码里，但是基于很多原因最终并没有这么做，所以Docker Compose仍然需要单独安装。<br />
+<br/>同样地，本文没有详细介绍<a href="http://docs.docker.com/compose/install/">Docker Compose的安装</a>，因为很简单。<br />
+<h4>搭建仓库（Repository）</h4>如前所述，需要创建一个开发仓库，以及为每个应用创建对应的仓库。这里我们创建了<code class="prettyprint">api</code>、<code class="prettyprint">dashboard</code>和<code class="prettyprint">cpanel</code>。当创建这些仓库的时候，重点关注<code class="prettyprint">development</code>仓库的搭建。<br />
+<pre class="prettyprint">$&nbsp;git&nbsp;clone&nbsp;git@bitbucket.com:&lt;project&gt;/development.git&nbsp;&lt;project&gt;&nbsp;&amp;&amp;&nbsp;cd&nbsp;&lt;project&gt;<br />
+</pre><br />
+现在将应用程序的仓库添加为<code class="prettyprint">development</code>仓库的子模块，只需要键入如下命令：<br />
+<pre class="prettyprint">$&nbsp;git&nbsp;submodule&nbsp;add&nbsp;git@bitbucket.org:&lt;project&gt;/api.git<br />
+$&nbsp;git&nbsp;submodule&nbsp;add&nbsp;git@bitbucket.org:&lt;project&gt;/dashboard.git<br />
+$&nbsp;git&nbsp;submodule&nbsp;add&nbsp;git@bitbucket.org:&lt;project&gt;/cpanel.git<br />
+</pre><br />
+这样，你的<code class="prettyprint">development</code>仓库根目录下会创建出<code class="prettyprint">.gitmodules</code>文件。程序员也就可以在克隆<code class="prettyprint">development</code>repository的时候一次得到所有的应用程序并运行：<br />
+<pre class="prettyprint">$&nbsp;git&nbsp;submodule&nbsp;init&nbsp;&amp;&amp;&nbsp;git&nbsp;submodule&nbsp;update<br />
+</pre><br />
+更多子模块的信息，请参考<a href="http://git-scm.com/book/en/v2/Git-Tools-Submodules">Git官方文档</a>。<br />
+<h3>Docker化一切</h3>现在我们已经搭建好了<code class="prettyprint">development</code>仓库，可以通过<code class="prettyprint">cd</code>的方式访问所有不同的应用程序。接下来我们要用之前提到的编排工具：Docker Compose来容器化所有的应用及其配置。<br />
+<br/>首先从<code class="prettyprint">api</code>应用程序开始。打开<code class="prettyprint">docker-compose.yml</code>，为API声明一个容器，并为这个容器选择基础镜像。本示例中的代码基于Node.js，因此选择官方Node.js镜像：<br />
+<pre class="prettyprint">api:<br />
+image:&nbsp;dockerfile/nodejs<br />
+</pre><br />
+这时，运行命令<code class="prettyprint">docker-compose up -d</code>会创建出一个名为<code class="prettyprint">&amp;lt;project&gt;_api_1</code>的容器，这个容器什么也不做（启动后立即退出）。运行命令<code class="prettyprint">docker-compose ps</code>可以得到由<code class="prettyprint">docker-compose.yml</code>编排的所有容器的信息。<br />
+<br/>接下来配置<code class="prettyprint">api</code>容器，使其多一些功能。为了实现这个目的，我们需要：<br />
+<ul><li>将源代码挂载到容器中</li><li>声明用什么命令运行应用</li><li>暴露合适的端口以供访问应用</li></ul><br />
+<br/>这样配置文件类似：<br />
+<pre class="prettyprint">api:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./api/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+ports:<br />
+-&nbsp;&quot;8000:8000&quot;<br />
+</pre><br />
+现在再运行<code class="prettyprint">docker-compose up -d</code>，就启动了<code class="prettyprint">api</code>应用，可以在<code class="prettyprint">http://localhost:8000</code>访问它。这个程序可能会崩溃，可以使用<code class="prettyprint">docker-compose logs api</code>检查容器日志。<br />
+<br/>这里，我怀疑<code class="prettyprint">api</code>的崩溃是因为它连不上数据库。因此需要添加<code class="prettyprint">database</code>容器，并让<code class="prettyprint">api</code>容器能够使用它。<br />
+<pre class="prettyprint">api:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./api/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+ports:<br />
+-&nbsp;&quot;8000:8000&quot;<br />
+links:<br />
+-&nbsp;database<br />
+database:<br />
+image:&nbsp;postgresql<br />
+ports:<br />
+-&nbsp;&quot;5432:5432&quot;<br />
+</pre><br />
+ 通过创建<code class="prettyprint">database</code>容器，并将其连接到<code class="prettyprint">api</code>容器，我们就可以在<code class="prettyprint">api</code>容器里找到<code class="prettyprint">database</code>。要想展示API的环境（比如，<code class="prettyprint">console.log(process.env)</code>），必须使用如下变量，比如<code class="prettyprint">POSTGRES_1_PORT_5432_TCP_ADDR</code>和<code class="prettyprint">POSTGRES_1_PORT_5432_TCP_PORT</code>。这是我们在API的配置文件里使用的关联到数据库的变量。<br />
+<br/>通过link指令，这个数据库容器被认为是API容器的依赖条件。这意味着Docker Compose在启动API容器之前一定会先启动数据库容器。<br />
+ 现在我们用同样的方式描述其它应用程序。这里，我们可以通过环境变量<code class="prettyprint">API_1_PORT_8000_TCP_ADDR</code>和<code class="prettyprint">API_1_PORT_8000_TCP_PORT</code>，将<code class="prettyprint">api</code>连接到<code class="prettyprint">dashboard</code>和<code class="prettyprint">cpanel</code>应用。<br />
+ <pre class="prettyprint">-&nbsp;./api/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+ports:<br />
+-&nbsp;&quot;8000:8000&quot;<br />
+links:<br />
+-&nbsp;database<br />
+database:<br />
+image:&nbsp;postgresql<br />
+dashboard:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./dashboard/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+ports:<br />
+-&nbsp;&quot;8001:8001&quot;<br />
+links:<br />
+-&nbsp;api<br />
+cpanel:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./api/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+ports:<br />
+-&nbsp;&quot;8002:8002&quot;<br />
+links:<br />
+-&nbsp;api<br />
+</pre><br />
+就像之前为数据库修改API配置文件一样，可以为dashboard和cpanel应用使用类似的环境变量，从而避免硬编码。<br />
+<br/>现在可以再次运行<code class="prettyprint">docker-compose up -d</code>命令和<code class="prettyprint">docker-compose ps</code>命令：<br />
+<pre class="prettyprint">kytwb@continuous:~/path/to/&lt;project&gt;$&nbsp;docker-compose&nbsp;up&nbsp;-d<br />
+Recreating&nbsp;&lt;project&gt;_database_1...<br />
+Recreating&nbsp;&lt;project&gt;_api_1...<br />
+Creating&nbsp;&lt;project&gt;_dashboard_1...<br />
+Creating&nbsp;&lt;project&gt;_cpanel_1...<br />
+kytwb@continuous:~/path/to/&lt;project&gt;$&nbsp;docker-compose&nbsp;ps<br />
+Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Command&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ports&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+----------------------------------------------------------------------------------<br />
+&lt;project&gt;_api_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;npm&nbsp;start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:8000-&gt;8000/tcp<br />
+&lt;project&gt;_dashboard_1&nbsp;&nbsp;&nbsp;npm&nbsp;start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:8001-&gt;8001/tcp<br />
+&lt;project&gt;_cpanel_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;npm&nbsp;start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:8002-&gt;8002/tcp<br />
+&lt;project&gt;_database_1&nbsp;&nbsp;&nbsp;&nbsp;/usr/local/bin/run&nbsp;&nbsp;&nbsp;Up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:5432-&gt;5432/tcp<br />
+</pre><br />
+应用应该就已经启动并运行了。<br />
+从<code class="prettyprint">http://localhsot:8000</code>可以访问api。<br />
+从<code class="prettyprint">http://localhsot:8001</code>可以访问dashboard。<br />
+从<code class="prettyprint">http://localhsot:8002</code>可以访问cpanel。<br />
+<h4>更进一步</h4><h4>本地路由</h4>在使用<code class="prettyprint">docker-compose up -d</code>运行所有容器之后，可以通过<strong><a href="http://localhost:&lt;application_por" rel="nofollow" target="_blank">http://localhost:&lt;application_por</a>t></strong>访问我们的应用。基于当前配置，我们可以很容易地使用<code class="prettyprint">jwilder/nginx-proxy</code>加上本地路由功能，这样就可以使用和生产环境类似的URL访问本地应用了。比如，通过<strong><a href="http://api.domain.local" rel="nofollow" target="_blank">http://api.domain.local</a></strong>访问<strong><a href="http://api.domain.com" rel="nofollow" target="_blank">http://api.domain.com</a></strong>的本地版本。<br />
+<code class="prettyprint">jwilder/nginx-proxy</code>镜像将一切变得很简单。只需要在<code class="prettyprint">docker-compose.yml</code>里加上描述去创建一个名为<code class="prettyprint">nginx</code>的新容器。根据<code class="prettyprint">jwilder/nginx-proxy</code>的README文件（挂载Docker守护进程socket，暴露80端口）配置该容器就可以了。之后，在现有容器里再添加额外的环境变量<code class="prettyprint">VIRTUAL_HOST</code>和<code class="prettyprint">VIRTUAL_PORT</code>，如下：<br />
+<pre class="prettyprint">api:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./api/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+environment:<br />
+-&nbsp;VIRTUAL_HOST=api.domain.local<br />
+-&nbsp;VIRTUAL_PORT=8000<br />
+ports:<br />
+-&nbsp;&quot;8000:8000&quot;<br />
+links:<br />
+-&nbsp;database<br />
+database:<br />
+image:&nbsp;postgresql<br />
+dashboard:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./dashboard/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+environment:<br />
+-&nbsp;VIRTUAL_HOST=dashboard.domain.local<br />
+-&nbsp;VIRTUAL_PORT=8001<br />
+ports:<br />
+-&nbsp;&quot;8001:8001&quot;<br />
+links:<br />
+-&nbsp;api<br />
+cpanel:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./api/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+environment:<br />
+-&nbsp;VIRTUAL_HOST=cpanel.domain.local<br />
+-&nbsp;VIRTUAL_PORT=8002<br />
+ports:<br />
+-&nbsp;&quot;8002:8002&quot;<br />
+links:<br />
+-&nbsp;api<br />
+nginx:<br />
+image:&nbsp;jwilder/nginx-proxy<br />
+volumes:<br />
+-&nbsp;/var/run/docker.sock:/tmp/docker.sock<br />
+ports:<br />
+-&nbsp;&quot;80:80&quot;<br />
+</pre><br />
+<code class="prettyprint">nginx</code>容器会检查所有运行在Docker守护进程之上（通过挂载的<code class="prettyprint">docker.sock</code>文件）的容器，为每个容器创建合适的nginx配置文件，并设置<code class="prettyprint">VIRTUAL_HOST</code>环境变量。<br />
+<br/>要想完成本地路由的搭建，还需要在<code class="prettyprint">etc/hosts</code>里添加所有的<code class="prettyprint">VIRTUAL_HOST</code>。我是手动用node.js的<code class="prettyprint">hostile</code>包来完成这个工作的，不过我猜应该可以自动化实现，就像<code class="prettyprint">jwilder/nginx-proxy</code>可以根据nginx配置文件动态变化一样。这里需要再研究一下。<br />
+<br/>现在可以再次运行<code class="prettyprint">docker-compose up -d</code>，然后使用和生产环境一样的url访问应用程序，只需用<code class="prettyprint">.local</code>TLD代替<code class="prettyprint">.com</code>TLD。<br />
+<h4>建议</h4>本文发表在AirPair上，如果你对更进一步这一章有任何建议，请随意fork并修改它。如果你发现本文有任何错误，也请帮忙修改。<br />
+<br/><strong>原文链接：<a href="https://www.airpair.com/docker/posts/efficiant-development-workfow-using-git-submodules-and-docker-compose">Efficient development workflow using Git submodules and Docker Compose</a>（翻译：崔婧雯）</strong> <br />
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝<br />
+译者介绍<br />
+崔婧雯，现就职于VMware，高级软件工程师，负责桌面虚拟化产品的质量保证工作。曾在IBM WebSphere业务流程管理软件担任多年系统测试工作。对虚拟化，中间件技术有浓厚的兴趣。
+											</div>
+
+																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_265'), $('#detail_more_265')); return false;">继续阅读 »</a>
+								        											</div>
+
+										<div class="content markitup-box hide" id="detail_more_265">
+											<br/>【编者的话】搭建开发环境一直让程序员们头疼，本文使用Git子模块和Docker Compose实现高效率的开发工作流，让程序员能够轻松搭建出开发环境，把精力投入到需要开发的应用本身。<br />
+<h4>问题</h4>自我们从Continuous Software雇佣了第一位远程开发的程序员以来，我们就意识到精简开发工作流的重要性。当新入职的程序员接手由很多应用组成的复杂项目时，我们想尽量避免以下这几个问题：<br />
+<ul><li>缺少stack模块：Node.js、PHP、PostgreSQL等</li><li>不清楚项目组件/应用的总体概况</li><li>本地配置冲突：监听端口、数据库配置等</li></ul><br />
+<br/>此外，就我个人经验而言，我们这样的程序员太容易找不着北了。曾经，我入职一个公司的第一整天都花在搭建开发环境上，试图去理解所有的东西怎么才能一起工作，而无法直接就去理解公司开发的应用到底是怎么工作的。<br />
+<h4>方案</h4>在具体介绍如何解决上述问题之前，我先介绍下我们项目使用的开发工作流。<br />
+<br/>我们的每个项目都在Bitbucket上有自己的Team（和GitHub上的Organization对应）。每个应用都会在Team下创建一个Repository（比如，<code class="prettyprint">api</code>、<code class="prettyprint">dashboard</code>、<code class="prettyprint">cpanel</code>）。在这些子模块之上，创建了一个名为<code class="prettyprint">development</code>的Repository。子模块的同一层级有<code class="prettyprint">README.md</code>和<code class="prettyprint">docker-compose.yml</code>两个文件。<br />
+<pre class="prettyprint">kytwb@continuous:~/path/to/&lt;project&gt;/$&nbsp;ls&nbsp;-la<br />
+total&nbsp;40<br />
+drwxrwxr-x&nbsp;11&nbsp;kytwb&nbsp;amine&nbsp;4096&nbsp;Mar&nbsp;14&nbsp;16:30&nbsp;.<br />
+drwxr-xr-x&nbsp;&nbsp;4&nbsp;kytwb&nbsp;amine&nbsp;4096&nbsp;Nov&nbsp;&nbsp;1&nbsp;20:17&nbsp;..<br />
+drwxr-xr-x&nbsp;20&nbsp;kytwb&nbsp;amine&nbsp;4096&nbsp;Mar&nbsp;11&nbsp;14:24&nbsp;api<br />
+drwxr-xr-x&nbsp;11&nbsp;kytwb&nbsp;amine&nbsp;4096&nbsp;Mar&nbsp;&nbsp;3&nbsp;13:21&nbsp;cpanel<br />
+drwxr-xr-x&nbsp;10&nbsp;kytwb&nbsp;amine&nbsp;4096&nbsp;Mar&nbsp;12&nbsp;11:37&nbsp;dashboard<br />
+-rw-r--r--&nbsp;&nbsp;1&nbsp;kytwb&nbsp;amine&nbsp;2302&nbsp;Mar&nbsp;&nbsp;2&nbsp;15:28&nbsp;docker-compose.yml<br />
+drwxrwxr-x&nbsp;&nbsp;9&nbsp;kytwb&nbsp;amine&nbsp;4096&nbsp;Mar&nbsp;14&nbsp;16:30&nbsp;.git<br />
+-rw-r--r--&nbsp;&nbsp;1&nbsp;kytwb&nbsp;amine&nbsp;&nbsp;648&nbsp;Dec&nbsp;22&nbsp;17:20&nbsp;.gitmodules<br />
+-rw-r--r--&nbsp;&nbsp;1&nbsp;kytwb&nbsp;amine&nbsp;1706&nbsp;Dec&nbsp;17&nbsp;16:41&nbsp;README.md<br />
+</pre><br />
+当新程序员加入项目时，只需在Bitbucket上浏览<code class="prettyprint">development</code>repository，根据<code class="prettyprint">README.md</code>的步骤就可以快速搭建环境。具体步骤如下所示：<br />
+<pre class="prettyprint">$&nbsp;git&nbsp;-v<br />
+$&nbsp;docker&nbsp;-v<br />
+$&nbsp;docker-compose&nbsp;-v<br />
+$&nbsp;git&nbsp;clone&nbsp;git@bitbucket.com:&lt;project&gt;/development.git&nbsp;&lt;project&gt;&nbsp;&amp;&amp;&nbsp;cd&nbsp;&lt;project&gt;<br />
+$&nbsp;git&nbsp;submodule&nbsp;init&nbsp;&amp;&amp;&nbsp;git&nbsp;submodule&nbsp;update<br />
+$&nbsp;git&nbsp;submodule&nbsp;foreach&nbsp;npm&nbsp;install<br />
+$&nbsp;docker-compose&nbsp;up&nbsp;-d<br />
+</pre><br />
+至此，一切就都已经搭建好，并运行在本地机器上了。<br />
+<h4>实现原理</h4>本章介绍我们是如何实现上述工作流的。<br />
+<h4>前提条件</h4><pre class="prettyprint">$&nbsp;git&nbsp;-v<br />
+$&nbsp;docker&nbsp;-v<br />
+$&nbsp;docker-compose<br />
+</pre><br />
+由于我们的开发堆栈完全基于Docker，所以，程序员需要先安装Docker。这时他们不需要特别熟悉Docker，只需要在开发时使用Docker即可，我们间接地将他们引入到了容器的世界，之后会以此为桥梁向他们解释如何使用Docker实现持续集成、持续交付等等。<code class="prettyprint">README.md</code>中并没有详细介绍如何<a href="https://docs.docker.com/installation/">安装Docker</a>，因为安装很简单。<br />
+<br/>当docker-compose还叫<a href="http://fig.sh/">Fig</a>的时候我们就已经用它来编排开发堆栈里的容器。之后Docker收购了Fig，重命名为Docker Compose。有人提议将Docker Compose合并到Docker代码里，但是基于很多原因最终并没有这么做，所以Docker Compose仍然需要单独安装。<br />
+<br/>同样地，本文没有详细介绍<a href="http://docs.docker.com/compose/install/">Docker Compose的安装</a>，因为很简单。<br />
+<h4>搭建仓库（Repository）</h4>如前所述，需要创建一个开发仓库，以及为每个应用创建对应的仓库。这里我们创建了<code class="prettyprint">api</code>、<code class="prettyprint">dashboard</code>和<code class="prettyprint">cpanel</code>。当创建这些仓库的时候，重点关注<code class="prettyprint">development</code>仓库的搭建。<br />
+<pre class="prettyprint">$&nbsp;git&nbsp;clone&nbsp;git@bitbucket.com:&lt;project&gt;/development.git&nbsp;&lt;project&gt;&nbsp;&amp;&amp;&nbsp;cd&nbsp;&lt;project&gt;<br />
+</pre><br />
+现在将应用程序的仓库添加为<code class="prettyprint">development</code>仓库的子模块，只需要键入如下命令：<br />
+<pre class="prettyprint">$&nbsp;git&nbsp;submodule&nbsp;add&nbsp;git@bitbucket.org:&lt;project&gt;/api.git<br />
+$&nbsp;git&nbsp;submodule&nbsp;add&nbsp;git@bitbucket.org:&lt;project&gt;/dashboard.git<br />
+$&nbsp;git&nbsp;submodule&nbsp;add&nbsp;git@bitbucket.org:&lt;project&gt;/cpanel.git<br />
+</pre><br />
+这样，你的<code class="prettyprint">development</code>仓库根目录下会创建出<code class="prettyprint">.gitmodules</code>文件。程序员也就可以在克隆<code class="prettyprint">development</code>repository的时候一次得到所有的应用程序并运行：<br />
+<pre class="prettyprint">$&nbsp;git&nbsp;submodule&nbsp;init&nbsp;&amp;&amp;&nbsp;git&nbsp;submodule&nbsp;update<br />
+</pre><br />
+更多子模块的信息，请参考<a href="http://git-scm.com/book/en/v2/Git-Tools-Submodules">Git官方文档</a>。<br />
+<h3>Docker化一切</h3>现在我们已经搭建好了<code class="prettyprint">development</code>仓库，可以通过<code class="prettyprint">cd</code>的方式访问所有不同的应用程序。接下来我们要用之前提到的编排工具：Docker Compose来容器化所有的应用及其配置。<br />
+<br/>首先从<code class="prettyprint">api</code>应用程序开始。打开<code class="prettyprint">docker-compose.yml</code>，为API声明一个容器，并为这个容器选择基础镜像。本示例中的代码基于Node.js，因此选择官方Node.js镜像：<br />
+<pre class="prettyprint">api:<br />
+image:&nbsp;dockerfile/nodejs<br />
+</pre><br />
+这时，运行命令<code class="prettyprint">docker-compose up -d</code>会创建出一个名为<code class="prettyprint">&amp;lt;project&gt;_api_1</code>的容器，这个容器什么也不做（启动后立即退出）。运行命令<code class="prettyprint">docker-compose ps</code>可以得到由<code class="prettyprint">docker-compose.yml</code>编排的所有容器的信息。<br />
+<br/>接下来配置<code class="prettyprint">api</code>容器，使其多一些功能。为了实现这个目的，我们需要：<br />
+<ul><li>将源代码挂载到容器中</li><li>声明用什么命令运行应用</li><li>暴露合适的端口以供访问应用</li></ul><br />
+<br/>这样配置文件类似：<br />
+<pre class="prettyprint">api:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./api/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+ports:<br />
+-&nbsp;&quot;8000:8000&quot;<br />
+</pre><br />
+现在再运行<code class="prettyprint">docker-compose up -d</code>，就启动了<code class="prettyprint">api</code>应用，可以在<code class="prettyprint">http://localhost:8000</code>访问它。这个程序可能会崩溃，可以使用<code class="prettyprint">docker-compose logs api</code>检查容器日志。<br />
+<br/>这里，我怀疑<code class="prettyprint">api</code>的崩溃是因为它连不上数据库。因此需要添加<code class="prettyprint">database</code>容器，并让<code class="prettyprint">api</code>容器能够使用它。<br />
+<pre class="prettyprint">api:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./api/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+ports:<br />
+-&nbsp;&quot;8000:8000&quot;<br />
+links:<br />
+-&nbsp;database<br />
+database:<br />
+image:&nbsp;postgresql<br />
+ports:<br />
+-&nbsp;&quot;5432:5432&quot;<br />
+</pre><br />
+ 通过创建<code class="prettyprint">database</code>容器，并将其连接到<code class="prettyprint">api</code>容器，我们就可以在<code class="prettyprint">api</code>容器里找到<code class="prettyprint">database</code>。要想展示API的环境（比如，<code class="prettyprint">console.log(process.env)</code>），必须使用如下变量，比如<code class="prettyprint">POSTGRES_1_PORT_5432_TCP_ADDR</code>和<code class="prettyprint">POSTGRES_1_PORT_5432_TCP_PORT</code>。这是我们在API的配置文件里使用的关联到数据库的变量。<br />
+<br/>通过link指令，这个数据库容器被认为是API容器的依赖条件。这意味着Docker Compose在启动API容器之前一定会先启动数据库容器。<br />
+ 现在我们用同样的方式描述其它应用程序。这里，我们可以通过环境变量<code class="prettyprint">API_1_PORT_8000_TCP_ADDR</code>和<code class="prettyprint">API_1_PORT_8000_TCP_PORT</code>，将<code class="prettyprint">api</code>连接到<code class="prettyprint">dashboard</code>和<code class="prettyprint">cpanel</code>应用。<br />
+ <pre class="prettyprint">-&nbsp;./api/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+ports:<br />
+-&nbsp;&quot;8000:8000&quot;<br />
+links:<br />
+-&nbsp;database<br />
+database:<br />
+image:&nbsp;postgresql<br />
+dashboard:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./dashboard/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+ports:<br />
+-&nbsp;&quot;8001:8001&quot;<br />
+links:<br />
+-&nbsp;api<br />
+cpanel:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./api/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+ports:<br />
+-&nbsp;&quot;8002:8002&quot;<br />
+links:<br />
+-&nbsp;api<br />
+</pre><br />
+就像之前为数据库修改API配置文件一样，可以为dashboard和cpanel应用使用类似的环境变量，从而避免硬编码。<br />
+<br/>现在可以再次运行<code class="prettyprint">docker-compose up -d</code>命令和<code class="prettyprint">docker-compose ps</code>命令：<br />
+<pre class="prettyprint">kytwb@continuous:~/path/to/&lt;project&gt;$&nbsp;docker-compose&nbsp;up&nbsp;-d<br />
+Recreating&nbsp;&lt;project&gt;_database_1...<br />
+Recreating&nbsp;&lt;project&gt;_api_1...<br />
+Creating&nbsp;&lt;project&gt;_dashboard_1...<br />
+Creating&nbsp;&lt;project&gt;_cpanel_1...<br />
+kytwb@continuous:~/path/to/&lt;project&gt;$&nbsp;docker-compose&nbsp;ps<br />
+Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Command&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ports&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+----------------------------------------------------------------------------------<br />
+&lt;project&gt;_api_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;npm&nbsp;start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:8000-&gt;8000/tcp<br />
+&lt;project&gt;_dashboard_1&nbsp;&nbsp;&nbsp;npm&nbsp;start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:8001-&gt;8001/tcp<br />
+&lt;project&gt;_cpanel_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;npm&nbsp;start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:8002-&gt;8002/tcp<br />
+&lt;project&gt;_database_1&nbsp;&nbsp;&nbsp;&nbsp;/usr/local/bin/run&nbsp;&nbsp;&nbsp;Up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:5432-&gt;5432/tcp<br />
+</pre><br />
+应用应该就已经启动并运行了。<br />
+从<code class="prettyprint">http://localhsot:8000</code>可以访问api。<br />
+从<code class="prettyprint">http://localhsot:8001</code>可以访问dashboard。<br />
+从<code class="prettyprint">http://localhsot:8002</code>可以访问cpanel。<br />
+<h4>更进一步</h4><h4>本地路由</h4>在使用<code class="prettyprint">docker-compose up -d</code>运行所有容器之后，可以通过<strong><a href="http://localhost:&lt;application_por" rel="nofollow" target="_blank">http://localhost:&lt;application_por</a>t></strong>访问我们的应用。基于当前配置，我们可以很容易地使用<code class="prettyprint">jwilder/nginx-proxy</code>加上本地路由功能，这样就可以使用和生产环境类似的URL访问本地应用了。比如，通过<strong><a href="http://api.domain.local" rel="nofollow" target="_blank">http://api.domain.local</a></strong>访问<strong><a href="http://api.domain.com" rel="nofollow" target="_blank">http://api.domain.com</a></strong>的本地版本。<br />
+<code class="prettyprint">jwilder/nginx-proxy</code>镜像将一切变得很简单。只需要在<code class="prettyprint">docker-compose.yml</code>里加上描述去创建一个名为<code class="prettyprint">nginx</code>的新容器。根据<code class="prettyprint">jwilder/nginx-proxy</code>的README文件（挂载Docker守护进程socket，暴露80端口）配置该容器就可以了。之后，在现有容器里再添加额外的环境变量<code class="prettyprint">VIRTUAL_HOST</code>和<code class="prettyprint">VIRTUAL_PORT</code>，如下：<br />
+<pre class="prettyprint">api:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./api/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+environment:<br />
+-&nbsp;VIRTUAL_HOST=api.domain.local<br />
+-&nbsp;VIRTUAL_PORT=8000<br />
+ports:<br />
+-&nbsp;&quot;8000:8000&quot;<br />
+links:<br />
+-&nbsp;database<br />
+database:<br />
+image:&nbsp;postgresql<br />
+dashboard:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./dashboard/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+environment:<br />
+-&nbsp;VIRTUAL_HOST=dashboard.domain.local<br />
+-&nbsp;VIRTUAL_PORT=8001<br />
+ports:<br />
+-&nbsp;&quot;8001:8001&quot;<br />
+links:<br />
+-&nbsp;api<br />
+cpanel:<br />
+image:&nbsp;dockerfile/nodejs<br />
+volumes:<br />
+-&nbsp;./api/:/app/<br />
+working_dir:&nbsp;/app/<br />
+command:&nbsp;npm&nbsp;start<br />
+environment:<br />
+-&nbsp;VIRTUAL_HOST=cpanel.domain.local<br />
+-&nbsp;VIRTUAL_PORT=8002<br />
+ports:<br />
+-&nbsp;&quot;8002:8002&quot;<br />
+links:<br />
+-&nbsp;api<br />
+nginx:<br />
+image:&nbsp;jwilder/nginx-proxy<br />
+volumes:<br />
+-&nbsp;/var/run/docker.sock:/tmp/docker.sock<br />
+ports:<br />
+-&nbsp;&quot;80:80&quot;<br />
+</pre><br />
+<code class="prettyprint">nginx</code>容器会检查所有运行在Docker守护进程之上（通过挂载的<code class="prettyprint">docker.sock</code>文件）的容器，为每个容器创建合适的nginx配置文件，并设置<code class="prettyprint">VIRTUAL_HOST</code>环境变量。<br />
+<br/>要想完成本地路由的搭建，还需要在<code class="prettyprint">etc/hosts</code>里添加所有的<code class="prettyprint">VIRTUAL_HOST</code>。我是手动用node.js的<code class="prettyprint">hostile</code>包来完成这个工作的，不过我猜应该可以自动化实现，就像<code class="prettyprint">jwilder/nginx-proxy</code>可以根据nginx配置文件动态变化一样。这里需要再研究一下。<br />
+<br/>现在可以再次运行<code class="prettyprint">docker-compose up -d</code>，然后使用和生产环境一样的url访问应用程序，只需用<code class="prettyprint">.local</code>TLD代替<code class="prettyprint">.com</code>TLD。<br />
+<h4>建议</h4>本文发表在AirPair上，如果你对更进一步这一章有任何建议，请随意fork并修改它。如果你发现本文有任何错误，也请帮忙修改。<br />
+<br/><strong>原文链接：<a href="https://www.airpair.com/docker/posts/efficiant-development-workfow-using-git-submodules-and-docker-compose">Efficient development workflow using Git submodules and Docker Compose</a>（翻译：崔婧雯）</strong> <br />
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝<br />
+译者介绍<br />
+崔婧雯，现就职于VMware，高级软件工程师，负责桌面虚拟化产品的质量保证工作。曾在IBM WebSphere业务流程管理软件担任多年系统测试工作。对虚拟化，中间件技术有浓厚的兴趣。																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_more_265'), $('#detail_265')); return false;">收起阅读 »</a>
+								        											</div>
+									</div>
+								</div>
+								<div class="mod-footer clearfix">
+									<span class="pull-right more-operate text-color-999">
+										崔婧雯 发表于 : 2015-03-20 10:55
+										<a class="text-color-999" href="http://www.dockerone.com/article/265"><i class="icon icon-comment"></i> 评论 (1)</a>
+										<a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
+											<i class="icon icon-share"></i> 分享										</a>
+										<div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+											<ul class="aw-dropdown-list">
+												<li><a onclick="AWS.User.share_out('tsina', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/265');"><i class="icon icon-weibo"></i> 微博</a></li>
+												<li><a onclick="AWS.User.share_out('qzone', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/265');"><i class="icon icon-qzone"></i> QZONE</a></li>
+												<li><a onclick="AWS.User.share_out('weixin', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/265');"><i class="icon icon-wechat"></i> 微信</a></li>
+											</ul>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+												<div class="aw-item">
+							<a class="aw-user-name hidden-xs" href="http://www.dockerone.com/people/DaoCloud">
+								<img alt="" src="http://dockerone.com/uploads/avatar/000/00/09/75_avatar_mid.jpg" />
+							</a>
+							<div class="aw-content">
+								<div class="mod-body">
+									<h2><a href="http://www.dockerone.com/article/263">DaoCloud宣布Docker Hub Mirror服务永久免费</a></h2>
+									<div class="aw-topic-bar">
+										<div class="tag-bar clearfix">
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/DaoCloud" class="text" data-id="139">DaoCloud</a>
+											</span>
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/%E9%95%9C%E5%83%8F" class="text" data-id="78">镜像</a>
+											</span>
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/registry" class="text" data-id="20">registry</a>
+											</span>
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Docker" class="text" data-id="7">Docker</a>
+											</span>
+																					</div>
+									</div>
+									<div class="content-wrap">
+										<div class="content" id="detail_263">
+											<div class="hide-content markitup-box">
+												<br/>2014年末，DaoCloud博客发布了《玩转Docker镜像》一文，以非常低调的方式宣布了Docker Hub Mirror服务的正式上线。在国内特殊网络环境下，Mirror服务显著加快了Docker Image的下载速度。一转眼，3个月过去了，在没有任何大规模推广宣传的情况下，Mirror服务用户已经达到数千人，各类Docker Image下载总量超过了5万。<br />
+<br/>今天，我们正式宣布，由DaoCloud运维的<strong>Docker Hub Mirror</strong>服务，<strong>永久免费</strong>！<br />
+<h2>什么是Docker Hub Mirror？</h2>根据Docker的官方文档，Mirror的定义是：<br />
+<br/><blockquote><br/>Such a registry is provided by a third-party hosting infrastructure but is targeted at their customers only. Some mechanism ensures that public images are pulled from a sponsor registry to the mirror registry, to make sure that the customers of the third-party provider can docker pull those images locally.</blockquote>Mirror是Docker Registry的一种特殊类型，它起到了类似代理服务器的缓存角色，在用户和Docker Hub之间做Image的缓存。 这个功能的设计目的是为了企业客户访问Docker Hub时降低网络开销，然而在中国这个巨大的局域网环境中，Mirror恰恰可以作为提升墙内下载速度的一种手段。<br />
+<br/>Mirror跟Private Registry有本质区别。Private Registry是开发者或者企业自建的Image存储库，通常用来保存企业内部的Docker Image，用于内部开发流程和产品的发布、版本控制。Mirror是一种代理中转服务，我们提供的Mirror服务，直接对接Docker Hub的官方Registry，Docker Hub上有数以十万计的各类Docker Image。在使用Private Registry时，需要在Docker Pull，或Dockerfile中直接键入Private Registry的地址，通常这样会导致跟Private Registry的绑定，缺少灵活性。使用Mirror服务，只需要在Docker Daemon的配置文件中加入Mirror参数，即可在全局范围内透明的访问官方的Docker Hub，避免了对Dockerfile Image引用来源的修改。<br />
+<br/><h2>Mirror服务后台架构实现</h2>Mirror是Docker的官方机制，它是Registry的一种特殊类型，在部署了Registry之后，需要开启Mirror模式并做一定的配置。具体的流程如下：<br />
+<div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150319/2e26429a9136c83f21f17245f7426fb5.jpg" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150319/2e26429a9136c83f21f17245f7426fb5.jpg" class="img-polaroid" title="1.jpg" alt="1.jpg" /></a>
+</div>
+<br />
+<h3>准备工作</h3><ul><li>在公有云环境部署Mirror Registry，并优化存储和网络访问（后文会详述）</li><li>在客户端，修改Docker的配置文件，添加registry-mirror参数（Mirror控制台中有详细的配置步骤）</li></ul><br />
+<br/>Docker Hub由Index和Registry构成，Index保存Image Layer的hash和关联关系等元数据（Metadata），Registry用于存储Image Layer的实际二进制数据。在客户端没有配置registry-mirror参数的情况下，每一次docker pull，客户端都会先连接Index获取元数据，然后再连接Registry获取实际的Image文件。由于Docker Hub的Index节点和Regsitry都部署国外，国内用户访问，经常遭遇连接超时或中断的情况，下载速度也极其缓慢。在启用了Mirror之后，访问流程如下：<br />
+<ul><li>客户端的Docker Daemon连接Index获取Metadata，这一部分的数据量极小，直连国外的速度可以忍受</li><li>根据Metadata的信息，Docker Daemon与Mirror服务器建立连接。如果pull的Image在Mirror上已经有缓存，就直接在Mirror上返回地址并下载</li><li>如果Image在Mirror并无缓存，Mirror会与Docker Hub Registry建立连接，下载Image，提供给用户的同时，在本地缓存</li><li>Mirror下载Docker Hub Image采用stream的方式，即可以一边下载，一边提供给客户端的Docker Daemon，不必等Image完全下载完</li></ul><br />
+<br/>通过以上的描述，可以发现，对于常用的Image，Mirror缓存命中率会非常高，如Ubuntu等基础Image，这会极大提高下载速度。同时，Docker Image采用分层的结构，即使Image被更新，也只是下载最新一层非常少的增量数据。<br />
+<br/>Mirror服务亦可以通过网络优化，加速对远端Docker Hub Registry的访问速度，如采用高速的商业VPN建立从Mirror到Docker Hub Registry的访问。通过七牛等云存储和CDN分发网络，会进一步提高国内客户端的下载速度。<br />
+<br/><h2>Mirror服务云端部署架构</h2>下图是DaoCloud在搭建Mirror服务时，采用的架构。<br />
+<div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150319/7467cbbbb46fb83ce1bcf8b34889fc3f.jpg" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150319/7467cbbbb46fb83ce1bcf8b34889fc3f.jpg" class="img-polaroid" title="Mirror_Arch.jpg" alt="Mirror_Arch.jpg" /></a>
+</div>
+<br />
+<br/>Mirror_Arch我们选择了UCloud和七牛云存储。这样的架构是基于以下的几个考虑：<br />
+<ul><li>我们的Mirror服务主节点位于UCloud北京BGP机房。BGP机房网络上行下行的速度都非常快，有助于获得稳定高速的对外访问带宽，在Docker Hub Regsitry下载Image，获得不错的速度。</li><li>我们扩展了Mirror的Registry Disk Driver，使它可以支持UCloud的UDisk服务。</li><li>BGP机房的云主机需要绑定外网IP，并且是根据带宽收费。提供类似Image下载服务，开销巨大。因此我们把下载缓存完成后的静态Image文件，定期同步到七牛云，既降低了带宽成本，同时也享受到了CDN的加速。我们通过代码检测需要下载的Image Layer是否在七牛有保存，如果有，就把访问重定向到七牛的URL，如果没有，就从UCloud的UDisk 直接下载。代码如下：<br />
+<div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150319/f8fcd72b6b2ec0f0ace8775dc2170c5d.jpg" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150319/f8fcd72b6b2ec0f0ace8775dc2170c5d.jpg" class="img-polaroid" title="Code.jpg" alt="Code.jpg" /></a>
+</div>
+</li></ul><br />
+<br/><h2>Mirror服务线上数据统计</h2>Mirror服务上线至今，我们已经积累了数以千计的注册用户，在UDisk和七牛使用了超过100个GB的Image缓存，每月的下载API调用达到了3-4万次，网络流量峰值曾突破10个GB，平均下载速度超过了1MBps，下载速度峰值曾经达到过8MBps。下图是我们在七牛控制台的统计数据截图：<br />
+<div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150319/45580ca20f35c813479a335b76db8106.jpg" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150319/45580ca20f35c813479a335b76db8106.jpg" class="img-polaroid" title="mirrordata1.jpg" alt="mirrordata1.jpg" /></a>
+</div>
+<br />
+<h2>写在最后</h2>作为Docker技术的坚决拥护者，我们深刻理解Docker Hub对每一个程序员的重要性，也不遗余力解决国内网络访问的速度问题。<br />
+<br/>DaoCloud将坚持提供Docker Hub Mirror服务，我们承诺<strong>永久免费</strong>。<br />
+<br/>借此文，也感谢UCloud和七牛云存储，感谢他们在Mirror服务搭建和运维过程中为DaoCloud提供的支持和帮助。<br />
+<br/><strong>还没体验过Mirror服务？赶紧注册：<a href="https://www.daocloud.io/account/signup"><a href="https://www.daocloud.io/account/signup" rel="nofollow" target="_blank">https://www.daocloud.io/account/signup</a></a></strong><br />
+<br/>---<br />
+<br/>本文来源于DaoCloud官方博客，链接：<a href="http://dockerone.com/article/160"><a href="http://dockerone.com/article/160">http://dockerone.com/article/160</a></a><br />
+<br/>了解更多信息，请关注DaoCloud官方网站：<a href="https://www.daocloud.io/">DaoCloud.io</a>
+											</div>
+
+																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_263'), $('#detail_more_263')); return false;">继续阅读 »</a>
+								        											</div>
+
+										<div class="content markitup-box hide" id="detail_more_263">
+											<br/>2014年末，DaoCloud博客发布了《玩转Docker镜像》一文，以非常低调的方式宣布了Docker Hub Mirror服务的正式上线。在国内特殊网络环境下，Mirror服务显著加快了Docker Image的下载速度。一转眼，3个月过去了，在没有任何大规模推广宣传的情况下，Mirror服务用户已经达到数千人，各类Docker Image下载总量超过了5万。<br />
+<br/>今天，我们正式宣布，由DaoCloud运维的<strong>Docker Hub Mirror</strong>服务，<strong>永久免费</strong>！<br />
+<h2>什么是Docker Hub Mirror？</h2>根据Docker的官方文档，Mirror的定义是：<br />
+<br/><blockquote><br/>Such a registry is provided by a third-party hosting infrastructure but is targeted at their customers only. Some mechanism ensures that public images are pulled from a sponsor registry to the mirror registry, to make sure that the customers of the third-party provider can docker pull those images locally.</blockquote>Mirror是Docker Registry的一种特殊类型，它起到了类似代理服务器的缓存角色，在用户和Docker Hub之间做Image的缓存。 这个功能的设计目的是为了企业客户访问Docker Hub时降低网络开销，然而在中国这个巨大的局域网环境中，Mirror恰恰可以作为提升墙内下载速度的一种手段。<br />
+<br/>Mirror跟Private Registry有本质区别。Private Registry是开发者或者企业自建的Image存储库，通常用来保存企业内部的Docker Image，用于内部开发流程和产品的发布、版本控制。Mirror是一种代理中转服务，我们提供的Mirror服务，直接对接Docker Hub的官方Registry，Docker Hub上有数以十万计的各类Docker Image。在使用Private Registry时，需要在Docker Pull，或Dockerfile中直接键入Private Registry的地址，通常这样会导致跟Private Registry的绑定，缺少灵活性。使用Mirror服务，只需要在Docker Daemon的配置文件中加入Mirror参数，即可在全局范围内透明的访问官方的Docker Hub，避免了对Dockerfile Image引用来源的修改。<br />
+<br/><h2>Mirror服务后台架构实现</h2>Mirror是Docker的官方机制，它是Registry的一种特殊类型，在部署了Registry之后，需要开启Mirror模式并做一定的配置。具体的流程如下：<br />
+<div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150319/2e26429a9136c83f21f17245f7426fb5.jpg" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150319/2e26429a9136c83f21f17245f7426fb5.jpg" class="img-polaroid" title="1.jpg" alt="1.jpg" /></a>
+</div>
+<br />
+<h3>准备工作</h3><ul><li>在公有云环境部署Mirror Registry，并优化存储和网络访问（后文会详述）</li><li>在客户端，修改Docker的配置文件，添加registry-mirror参数（Mirror控制台中有详细的配置步骤）</li></ul><br />
+<br/>Docker Hub由Index和Registry构成，Index保存Image Layer的hash和关联关系等元数据（Metadata），Registry用于存储Image Layer的实际二进制数据。在客户端没有配置registry-mirror参数的情况下，每一次docker pull，客户端都会先连接Index获取元数据，然后再连接Registry获取实际的Image文件。由于Docker Hub的Index节点和Regsitry都部署国外，国内用户访问，经常遭遇连接超时或中断的情况，下载速度也极其缓慢。在启用了Mirror之后，访问流程如下：<br />
+<ul><li>客户端的Docker Daemon连接Index获取Metadata，这一部分的数据量极小，直连国外的速度可以忍受</li><li>根据Metadata的信息，Docker Daemon与Mirror服务器建立连接。如果pull的Image在Mirror上已经有缓存，就直接在Mirror上返回地址并下载</li><li>如果Image在Mirror并无缓存，Mirror会与Docker Hub Registry建立连接，下载Image，提供给用户的同时，在本地缓存</li><li>Mirror下载Docker Hub Image采用stream的方式，即可以一边下载，一边提供给客户端的Docker Daemon，不必等Image完全下载完</li></ul><br />
+<br/>通过以上的描述，可以发现，对于常用的Image，Mirror缓存命中率会非常高，如Ubuntu等基础Image，这会极大提高下载速度。同时，Docker Image采用分层的结构，即使Image被更新，也只是下载最新一层非常少的增量数据。<br />
+<br/>Mirror服务亦可以通过网络优化，加速对远端Docker Hub Registry的访问速度，如采用高速的商业VPN建立从Mirror到Docker Hub Registry的访问。通过七牛等云存储和CDN分发网络，会进一步提高国内客户端的下载速度。<br />
+<br/><h2>Mirror服务云端部署架构</h2>下图是DaoCloud在搭建Mirror服务时，采用的架构。<br />
+<div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150319/7467cbbbb46fb83ce1bcf8b34889fc3f.jpg" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150319/7467cbbbb46fb83ce1bcf8b34889fc3f.jpg" class="img-polaroid" title="Mirror_Arch.jpg" alt="Mirror_Arch.jpg" /></a>
+</div>
+<br />
+<br/>Mirror_Arch我们选择了UCloud和七牛云存储。这样的架构是基于以下的几个考虑：<br />
+<ul><li>我们的Mirror服务主节点位于UCloud北京BGP机房。BGP机房网络上行下行的速度都非常快，有助于获得稳定高速的对外访问带宽，在Docker Hub Regsitry下载Image，获得不错的速度。</li><li>我们扩展了Mirror的Registry Disk Driver，使它可以支持UCloud的UDisk服务。</li><li>BGP机房的云主机需要绑定外网IP，并且是根据带宽收费。提供类似Image下载服务，开销巨大。因此我们把下载缓存完成后的静态Image文件，定期同步到七牛云，既降低了带宽成本，同时也享受到了CDN的加速。我们通过代码检测需要下载的Image Layer是否在七牛有保存，如果有，就把访问重定向到七牛的URL，如果没有，就从UCloud的UDisk 直接下载。代码如下：<br />
+<div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150319/f8fcd72b6b2ec0f0ace8775dc2170c5d.jpg" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150319/f8fcd72b6b2ec0f0ace8775dc2170c5d.jpg" class="img-polaroid" title="Code.jpg" alt="Code.jpg" /></a>
+</div>
+</li></ul><br />
+<br/><h2>Mirror服务线上数据统计</h2>Mirror服务上线至今，我们已经积累了数以千计的注册用户，在UDisk和七牛使用了超过100个GB的Image缓存，每月的下载API调用达到了3-4万次，网络流量峰值曾突破10个GB，平均下载速度超过了1MBps，下载速度峰值曾经达到过8MBps。下图是我们在七牛控制台的统计数据截图：<br />
+<div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150319/45580ca20f35c813479a335b76db8106.jpg" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150319/45580ca20f35c813479a335b76db8106.jpg" class="img-polaroid" title="mirrordata1.jpg" alt="mirrordata1.jpg" /></a>
+</div>
+<br />
+<h2>写在最后</h2>作为Docker技术的坚决拥护者，我们深刻理解Docker Hub对每一个程序员的重要性，也不遗余力解决国内网络访问的速度问题。<br />
+<br/>DaoCloud将坚持提供Docker Hub Mirror服务，我们承诺<strong>永久免费</strong>。<br />
+<br/>借此文，也感谢UCloud和七牛云存储，感谢他们在Mirror服务搭建和运维过程中为DaoCloud提供的支持和帮助。<br />
+<br/><strong>还没体验过Mirror服务？赶紧注册：<a href="https://www.daocloud.io/account/signup"><a href="https://www.daocloud.io/account/signup" rel="nofollow" target="_blank">https://www.daocloud.io/account/signup</a></a></strong><br />
+<br/>---<br />
+<br/>本文来源于DaoCloud官方博客，链接：<a href="http://dockerone.com/article/160"><a href="http://dockerone.com/article/160">http://dockerone.com/article/160</a></a><br />
+<br/>了解更多信息，请关注DaoCloud官方网站：<a href="https://www.daocloud.io/">DaoCloud.io</a>																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_more_263'), $('#detail_263')); return false;">收起阅读 »</a>
+								        											</div>
+									</div>
+								</div>
+								<div class="mod-footer clearfix">
+									<span class="pull-right more-operate text-color-999">
+										DaoCloud 发表于 : 2015-03-19 14:16
+										<a class="text-color-999" href="http://www.dockerone.com/article/263"><i class="icon icon-comment"></i> 评论 (8)</a>
+										<a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
+											<i class="icon icon-share"></i> 分享										</a>
+										<div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+											<ul class="aw-dropdown-list">
+												<li><a onclick="AWS.User.share_out('tsina', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/263');"><i class="icon icon-weibo"></i> 微博</a></li>
+												<li><a onclick="AWS.User.share_out('qzone', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/263');"><i class="icon icon-qzone"></i> QZONE</a></li>
+												<li><a onclick="AWS.User.share_out('weixin', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/263');"><i class="icon icon-wechat"></i> 微信</a></li>
+											</ul>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+												<div class="aw-item">
+							<a class="aw-user-name hidden-xs" href="http://www.dockerone.com/people/vitasyuzhou">
+								<img alt="" src="http://dockerone.com/uploads/avatar/000/00/09/65_avatar_mid.jpg" />
+							</a>
+							<div class="aw-content">
+								<div class="mod-body">
+									<h2><a href="http://www.dockerone.com/article/262">Weave的运行原理</a></h2>
+									<div class="aw-topic-bar">
+										<div class="tag-bar clearfix">
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Weave" class="text" data-id="26">Weave</a>
+											</span>
+																					</div>
+									</div>
+									<div class="content-wrap">
+										<div class="content" id="detail_262">
+											<div class="hide-content markitup-box">
+												<br/>【编者的话】Docker原生的网络支持非常有限，固定的IP段设置，只支持Linux bridge， 且没有跨主机的集群网络方案。这就给很多开源项目创造了施展的空间，这方面介绍可以详见这篇文章《5个解决docker网络问题的项目》。Weave作为这些方案中，被评价为目前最靠谱的，所以在这里我想结合《Weave：how does it work？》，重点描述一下我对关于Weave的工作原理的一些理解和思考。本文首发于我的<a href="http://openstack.wiaapp.cn/?p=1260">个人博客</a>。<br />
+<br/><h3>背景</h3>Docker原生的网络支持非常有限，固定的IP段设置，只支持Linux bridge， 且没有跨主机的集群网络方案。这就给很多开源项目创造了施展的空间，这方面介绍可以详见这篇文章<a href="http://www.infoq.com/cn/news/2014/10/docker-network-project">《5个解决docker网络问题的项目》</a>。Weave作为这些方案中，被评价为目前最靠谱的，所以在这里我想结合<a href="http://zettio.github.io/weave/how-it-works.html">《Weave：how does it work？》</a>，重点描述一下我对关于Weave的工作原理的一些理解和思考。<br />
+<h3>Weave运行原理</h3><div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150318/8146478866097f2b86826d175e681ac6.png" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150318/8146478866097f2b86826d175e681ac6.png" class="img-polaroid" title="weave.png" alt="weave.png" /></a>
+</div>
+<br />
+<h4>Weave network的组成</h4>如上图所示，在每一个部署Docker的主机（可能是物理机也可能是虚拟机）上都部署有一个W（即Weave router，它本身也可以以一个容器的形式部署）。Weave网络是由这些weave routers组成的对等端点（peer）构成，每个对等的一端都有自己的名字，其中包括一个可读性好的名字用于表示状态和日志的输出，一个唯一标识符用于运行中相互区别，即使重启Docker主机名字也保持不变，这些名字默认是mac地址。<br />
+<br/>每个部署了Weave router的主机都需要将TCP和UDP的6783端口的防火墙设置打 开，保证Weave router之间控制面流量和数据面流量的通过。控制面由weave routers之间建立的TCP连接构成，通过它进行握手和拓扑关系信息的交换通信。 这个通信可以被配置为加密通信。而数据面由Weave routers之间建立的UDP连接构成，这些连接大部分都会加密。这些连接都是全双工的，并且可以穿越防火墙。<br />
+<br/>Weave创建一个网桥，并且在网桥和每个容器之间创建一个veth对，Weave run的时候就可以给每个veth的容器端分配一个ip和相应的掩码。veth的网桥这端就是Weave router容器，并在Weave launch的时候分配好ip和掩码。<br />
+<h4>Weave的控制面</h4>Weave routers间通过TCP构成了Weave network的控制面，它是完全分布式， 没有集中控制点，对等的端点间使用gossip协议交换网络的拓补关系。 gossip消息的结构如下图所示：<br />
+<pre class="prettyprint">+-----------------------------------+<br />
+|&nbsp;1-byte&nbsp;message&nbsp;type&nbsp;-&nbsp;Gossip&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;4-byte&nbsp;Gossip&nbsp;channel&nbsp;-&nbsp;Topology&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;Name&nbsp;of&nbsp;source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Gossip&nbsp;payload&nbsp;(topology&nbsp;update)&nbsp;&nbsp;|<br />
++-----------------------------------+&nbsp;<br />
+</pre><br />
+拓补的更新信息结构如下图所示：<br />
+<pre class="prettyprint">+-----------------------------------+<br />
+|&nbsp;Peer&nbsp;1:&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;1:&nbsp;NickName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;1:&nbsp;UID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;1:&nbsp;Version&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;1:&nbsp;List&nbsp;of&nbsp;connections&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;N:&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;N:&nbsp;NickName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;N:&nbsp;UID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;N:&nbsp;Version&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;N:&nbsp;List&nbsp;of&nbsp;connections&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+&nbsp;<br />
+</pre><br />
+端与端的连接信息结构如下图所示：<br />
+<pre class="prettyprint">+-----------------------------------+<br />
+|&nbsp;Connection&nbsp;1:&nbsp;Remote&nbsp;Peer&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Connection&nbsp;1:&nbsp;Remote&nbsp;IP&nbsp;address&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Connection&nbsp;2:&nbsp;Remote&nbsp;Peer&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Connection&nbsp;2:&nbsp;Remote&nbsp;IP&nbsp;address&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Connection&nbsp;N:&nbsp;Remote&nbsp;Peer&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Connection&nbsp;N:&nbsp;Remote&nbsp;IP&nbsp;address&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+&nbsp;<br />
+</pre><br /><br />
+Weave router学习获取MAC地址对应的主机，结合这个信息和网络之间的拓扑关 系，可以帮助router做出判断并且尽量防止将每个包都转发到每个对端。Weave可以在拓扑关系不断发生变化的部分连接的网络进行路由。比如下图所示：在这个网络中，对端1与对端2、3直接相连，但是如果对端1想要将包发到对端4或5，就必须首先发到3上，然后由3路由到达。<br />
+<div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150318/ea4bb5cf2a77600b44fb1589851fb2f4.png" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150318/ea4bb5cf2a77600b44fb1589851fb2f4.png" class="img-polaroid" title="route-packets-in-partially-connected-networks.png" alt="route-packets-in-partially-connected-networks.png" /></a>
+</div>
+<br />
+<h4>Weave network的数据面</h4>Weave routers间通过对等端点见的UDP连接构成了Weave network的数据面， Weave router将捕获的数据包封装成UDP报文发出去。其封装的网络包的结构如下图所示：<br />
+<pre class="prettyprint">+-----------------------------------+<br />
+|&nbsp;Name&nbsp;of&nbsp;sending&nbsp;peer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;1:&nbsp;Name&nbsp;of&nbsp;capturing&nbsp;peer&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;1:&nbsp;Name&nbsp;of&nbsp;destination&nbsp;peer&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;1:&nbsp;Captured&nbsp;payload&nbsp;length&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;1:&nbsp;Captured&nbsp;payload&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;2:&nbsp;Name&nbsp;of&nbsp;capturing&nbsp;peer&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;2:&nbsp;Name&nbsp;of&nbsp;destination&nbsp;peer&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;2:&nbsp;Captured&nbsp;payload&nbsp;length&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;2:&nbsp;Captured&nbsp;payload&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;N:&nbsp;Name&nbsp;of&nbsp;capturing&nbsp;peer&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;N:&nbsp;Name&nbsp;of&nbsp;destination&nbsp;peer&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;N:&nbsp;Captured&nbsp;payload&nbsp;length&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;N:&nbsp;Captured&nbsp;payload&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+</pre> <br />
+说的详细一点就是：Weave router在混杂模式下使用pcap在网桥上截获网络数 据包，他排除由内核直接通过网桥转发的数据流量，例如本子网内部本地容器之间的数据以及宿主机和本地容器之间的流量。捕获的包通过UDP转发到所其他主机的weave router端，在接收端，router通过pcap将包注入到网桥上的接口，通过网桥的接口转发这些包到对应的veth的容器端。<br />
+<h3>关于Weave改进的思考</h3>Weave router通过pcap捕获包这种方式来完成封装和解封装这个过程，效率应 该是有问题的，这个过程中需要将数据包从内核态拷贝到用户态，然后按照自定义的格式完成封装和解封装。个人认为：这个过程应该可以使用Open vSwitch，基于VXLAN来代替。
+											</div>
+
+																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_262'), $('#detail_more_262')); return false;">继续阅读 »</a>
+								        											</div>
+
+										<div class="content markitup-box hide" id="detail_more_262">
+											<br/>【编者的话】Docker原生的网络支持非常有限，固定的IP段设置，只支持Linux bridge， 且没有跨主机的集群网络方案。这就给很多开源项目创造了施展的空间，这方面介绍可以详见这篇文章《5个解决docker网络问题的项目》。Weave作为这些方案中，被评价为目前最靠谱的，所以在这里我想结合《Weave：how does it work？》，重点描述一下我对关于Weave的工作原理的一些理解和思考。本文首发于我的<a href="http://openstack.wiaapp.cn/?p=1260">个人博客</a>。<br />
+<br/><h3>背景</h3>Docker原生的网络支持非常有限，固定的IP段设置，只支持Linux bridge， 且没有跨主机的集群网络方案。这就给很多开源项目创造了施展的空间，这方面介绍可以详见这篇文章<a href="http://www.infoq.com/cn/news/2014/10/docker-network-project">《5个解决docker网络问题的项目》</a>。Weave作为这些方案中，被评价为目前最靠谱的，所以在这里我想结合<a href="http://zettio.github.io/weave/how-it-works.html">《Weave：how does it work？》</a>，重点描述一下我对关于Weave的工作原理的一些理解和思考。<br />
+<h3>Weave运行原理</h3><div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150318/8146478866097f2b86826d175e681ac6.png" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150318/8146478866097f2b86826d175e681ac6.png" class="img-polaroid" title="weave.png" alt="weave.png" /></a>
+</div>
+<br />
+<h4>Weave network的组成</h4>如上图所示，在每一个部署Docker的主机（可能是物理机也可能是虚拟机）上都部署有一个W（即Weave router，它本身也可以以一个容器的形式部署）。Weave网络是由这些weave routers组成的对等端点（peer）构成，每个对等的一端都有自己的名字，其中包括一个可读性好的名字用于表示状态和日志的输出，一个唯一标识符用于运行中相互区别，即使重启Docker主机名字也保持不变，这些名字默认是mac地址。<br />
+<br/>每个部署了Weave router的主机都需要将TCP和UDP的6783端口的防火墙设置打 开，保证Weave router之间控制面流量和数据面流量的通过。控制面由weave routers之间建立的TCP连接构成，通过它进行握手和拓扑关系信息的交换通信。 这个通信可以被配置为加密通信。而数据面由Weave routers之间建立的UDP连接构成，这些连接大部分都会加密。这些连接都是全双工的，并且可以穿越防火墙。<br />
+<br/>Weave创建一个网桥，并且在网桥和每个容器之间创建一个veth对，Weave run的时候就可以给每个veth的容器端分配一个ip和相应的掩码。veth的网桥这端就是Weave router容器，并在Weave launch的时候分配好ip和掩码。<br />
+<h4>Weave的控制面</h4>Weave routers间通过TCP构成了Weave network的控制面，它是完全分布式， 没有集中控制点，对等的端点间使用gossip协议交换网络的拓补关系。 gossip消息的结构如下图所示：<br />
+<pre class="prettyprint">+-----------------------------------+<br />
+|&nbsp;1-byte&nbsp;message&nbsp;type&nbsp;-&nbsp;Gossip&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;4-byte&nbsp;Gossip&nbsp;channel&nbsp;-&nbsp;Topology&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;Name&nbsp;of&nbsp;source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Gossip&nbsp;payload&nbsp;(topology&nbsp;update)&nbsp;&nbsp;|<br />
++-----------------------------------+&nbsp;<br />
+</pre><br />
+拓补的更新信息结构如下图所示：<br />
+<pre class="prettyprint">+-----------------------------------+<br />
+|&nbsp;Peer&nbsp;1:&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;1:&nbsp;NickName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;1:&nbsp;UID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;1:&nbsp;Version&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;1:&nbsp;List&nbsp;of&nbsp;connections&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;N:&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;N:&nbsp;NickName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;N:&nbsp;UID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;N:&nbsp;Version&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Peer&nbsp;N:&nbsp;List&nbsp;of&nbsp;connections&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+&nbsp;<br />
+</pre><br />
+端与端的连接信息结构如下图所示：<br />
+<pre class="prettyprint">+-----------------------------------+<br />
+|&nbsp;Connection&nbsp;1:&nbsp;Remote&nbsp;Peer&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Connection&nbsp;1:&nbsp;Remote&nbsp;IP&nbsp;address&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Connection&nbsp;2:&nbsp;Remote&nbsp;Peer&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Connection&nbsp;2:&nbsp;Remote&nbsp;IP&nbsp;address&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Connection&nbsp;N:&nbsp;Remote&nbsp;Peer&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Connection&nbsp;N:&nbsp;Remote&nbsp;IP&nbsp;address&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+&nbsp;<br />
+</pre><br /><br />
+Weave router学习获取MAC地址对应的主机，结合这个信息和网络之间的拓扑关 系，可以帮助router做出判断并且尽量防止将每个包都转发到每个对端。Weave可以在拓扑关系不断发生变化的部分连接的网络进行路由。比如下图所示：在这个网络中，对端1与对端2、3直接相连，但是如果对端1想要将包发到对端4或5，就必须首先发到3上，然后由3路由到达。<br />
+<div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150318/ea4bb5cf2a77600b44fb1589851fb2f4.png" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150318/ea4bb5cf2a77600b44fb1589851fb2f4.png" class="img-polaroid" title="route-packets-in-partially-connected-networks.png" alt="route-packets-in-partially-connected-networks.png" /></a>
+</div>
+<br />
+<h4>Weave network的数据面</h4>Weave routers间通过对等端点见的UDP连接构成了Weave network的数据面， Weave router将捕获的数据包封装成UDP报文发出去。其封装的网络包的结构如下图所示：<br />
+<pre class="prettyprint">+-----------------------------------+<br />
+|&nbsp;Name&nbsp;of&nbsp;sending&nbsp;peer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;1:&nbsp;Name&nbsp;of&nbsp;capturing&nbsp;peer&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;1:&nbsp;Name&nbsp;of&nbsp;destination&nbsp;peer&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;1:&nbsp;Captured&nbsp;payload&nbsp;length&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;1:&nbsp;Captured&nbsp;payload&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;2:&nbsp;Name&nbsp;of&nbsp;capturing&nbsp;peer&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;2:&nbsp;Name&nbsp;of&nbsp;destination&nbsp;peer&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;2:&nbsp;Captured&nbsp;payload&nbsp;length&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;2:&nbsp;Captured&nbsp;payload&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;N:&nbsp;Name&nbsp;of&nbsp;capturing&nbsp;peer&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;N:&nbsp;Name&nbsp;of&nbsp;destination&nbsp;peer&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;N:&nbsp;Captured&nbsp;payload&nbsp;length&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+|&nbsp;Frame&nbsp;N:&nbsp;Captured&nbsp;payload&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br />
++-----------------------------------+<br />
+</pre> <br />
+说的详细一点就是：Weave router在混杂模式下使用pcap在网桥上截获网络数 据包，他排除由内核直接通过网桥转发的数据流量，例如本子网内部本地容器之间的数据以及宿主机和本地容器之间的流量。捕获的包通过UDP转发到所其他主机的weave router端，在接收端，router通过pcap将包注入到网桥上的接口，通过网桥的接口转发这些包到对应的veth的容器端。<br />
+<h3>关于Weave改进的思考</h3>Weave router通过pcap捕获包这种方式来完成封装和解封装这个过程，效率应 该是有问题的，这个过程中需要将数据包从内核态拷贝到用户态，然后按照自定义的格式完成封装和解封装。个人认为：这个过程应该可以使用Open vSwitch，基于VXLAN来代替。																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_more_262'), $('#detail_262')); return false;">收起阅读 »</a>
+								        											</div>
+									</div>
+								</div>
+								<div class="mod-footer clearfix">
+									<span class="pull-right more-operate text-color-999">
+										vitasyuzhou 发表于 : 2015-03-18 20:47
+										<a class="text-color-999" href="http://www.dockerone.com/article/262"><i class="icon icon-comment"></i> 评论 (2)</a>
+										<a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
+											<i class="icon icon-share"></i> 分享										</a>
+										<div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+											<ul class="aw-dropdown-list">
+												<li><a onclick="AWS.User.share_out('tsina', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/262');"><i class="icon icon-weibo"></i> 微博</a></li>
+												<li><a onclick="AWS.User.share_out('qzone', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/262');"><i class="icon icon-qzone"></i> QZONE</a></li>
+												<li><a onclick="AWS.User.share_out('weixin', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/262');"><i class="icon icon-wechat"></i> 微信</a></li>
+											</ul>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+												<div class="aw-item">
+							<a class="aw-user-name hidden-xs" href="http://www.dockerone.com/people/%E7%9F%B3%E6%B5%B7%E6%97%AD">
+								<img alt="" src="http://dockerone.com/uploads/avatar/000/00/04/55_avatar_mid.jpg" />
+							</a>
+							<div class="aw-content">
+								<div class="mod-body">
+									<h2><a href="http://www.dockerone.com/article/261">cSphere国内首个容器管理工具 —— 2015年3月再启航</a></h2>
+									<div class="aw-topic-bar">
+										<div class="tag-bar clearfix">
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Docker" class="text" data-id="7">Docker</a>
+											</span>
+																					</div>
+									</div>
+									<div class="content-wrap">
+										<div class="content" id="detail_261">
+											<div class="hide-content markitup-box">
+												<br/>【编者的话】2015年3月，NiceScale推出了免费版cSphere，5个节点及以下的容器管理可以永久免费使用cSphere，并且我们会持续不断的为免费版提供功能更新。<br />
+<br/><blockquote><br/><em>2015年1月，云栈科技推出国内首个容器虚拟化管理平台——cSphere</em><br />
+  <em>2015年3月，cSphere V0.9, 低调发布再启航</em></blockquote><div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150318/dc74cceaf19be2bca7af59ec538c49af.jpg" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150318/dc74cceaf19be2bca7af59ec538c49af.jpg" class="img-polaroid" title="d05_-_副本.jpg" alt="d05_-_副本.jpg" /></a>
+</div>
+<br />
+<h2>cSphere--帮您管理集装箱 尽享容器化的便利</h2>大家可以想象，如果没有一个得力的容器管理工具，无法有效的管理，那么面对成百上千的容器，很可能就是场灾难......<br />
+<br/>cSphere能够提供：<br />
+<ul><li>简洁的Dashboard，丰富的容器及相关的统计信息，一切信息尽在掌握</li><li>可视化、批量化的容器管理、镜像管理、主机管理，从容面对容器管理</li><li>支持镜像仓库的管理</li><li>便捷的搜索</li><li>容器调度、编排（规划中）</li></ul><br />
+<br/>希望cSphere能够祝您轻松驾驭Docker容器。<br />
+<br/><h2>免费版cSphere--开放测试 欢迎吐槽</h2>2015年3月，我们推出了免费版cSphere，5个节点及以下的容器管理可以永久免费使用cSphere，并且我们会持续不断的为免费版提供功能更新。<br />
+<br/>如果5个节点不能满足您的需要，您还可以联系我们获取更多节点的试用License。<br />
+如果您有定制化的需求，也可以直接联系我们。<br />
+<br/><h2>客户合作计划--成就客户</h2>2015年，我们推出了客户成就计划，希望能够帮到企业在内部更好的应用、推广容器虚拟化。通过客户成就计划，客户可以极优惠的价格使用cSphere，并可持续获得cSphere的后续全部更新。关于该计划的具体情况，您可以直接联系我们。<br />
+<br/><h2>联系我们</h2><ul><li>网址：<a href="http://www.csphere.cn" rel="nofollow" target="_blank">www.csphere.cn</a></li><li>电话：010-62249349  &amp; 18600072367</li><li>邮箱： <a href="mailto:contactus@nicescale.com">contactus@nicescale.com</a></li></ul><br />
+<br/><div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150318/f601ab2fdc4a4d752ed2f2586d68611d.jpg" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150318/f601ab2fdc4a4d752ed2f2586d68611d.jpg" class="img-polaroid" title="微信-qrcode_for_gh_5f51f1b06489_258.jpg" alt="微信-qrcode_for_gh_5f51f1b06489_258.jpg" /></a>
+</div>
+
+											</div>
+
+																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_261'), $('#detail_more_261')); return false;">继续阅读 »</a>
+								        											</div>
+
+										<div class="content markitup-box hide" id="detail_more_261">
+											<br/>【编者的话】2015年3月，NiceScale推出了免费版cSphere，5个节点及以下的容器管理可以永久免费使用cSphere，并且我们会持续不断的为免费版提供功能更新。<br />
+<br/><blockquote><br/><em>2015年1月，云栈科技推出国内首个容器虚拟化管理平台——cSphere</em><br />
+  <em>2015年3月，cSphere V0.9, 低调发布再启航</em></blockquote><div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150318/dc74cceaf19be2bca7af59ec538c49af.jpg" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150318/dc74cceaf19be2bca7af59ec538c49af.jpg" class="img-polaroid" title="d05_-_副本.jpg" alt="d05_-_副本.jpg" /></a>
+</div>
+<br />
+<h2>cSphere--帮您管理集装箱 尽享容器化的便利</h2>大家可以想象，如果没有一个得力的容器管理工具，无法有效的管理，那么面对成百上千的容器，很可能就是场灾难......<br />
+<br/>cSphere能够提供：<br />
+<ul><li>简洁的Dashboard，丰富的容器及相关的统计信息，一切信息尽在掌握</li><li>可视化、批量化的容器管理、镜像管理、主机管理，从容面对容器管理</li><li>支持镜像仓库的管理</li><li>便捷的搜索</li><li>容器调度、编排（规划中）</li></ul><br />
+<br/>希望cSphere能够祝您轻松驾驭Docker容器。<br />
+<br/><h2>免费版cSphere--开放测试 欢迎吐槽</h2>2015年3月，我们推出了免费版cSphere，5个节点及以下的容器管理可以永久免费使用cSphere，并且我们会持续不断的为免费版提供功能更新。<br />
+<br/>如果5个节点不能满足您的需要，您还可以联系我们获取更多节点的试用License。<br />
+如果您有定制化的需求，也可以直接联系我们。<br />
+<br/><h2>客户合作计划--成就客户</h2>2015年，我们推出了客户成就计划，希望能够帮到企业在内部更好的应用、推广容器虚拟化。通过客户成就计划，客户可以极优惠的价格使用cSphere，并可持续获得cSphere的后续全部更新。关于该计划的具体情况，您可以直接联系我们。<br />
+<br/><h2>联系我们</h2><ul><li>网址：<a href="http://www.csphere.cn" rel="nofollow" target="_blank">www.csphere.cn</a></li><li>电话：010-62249349  &amp; 18600072367</li><li>邮箱： <a href="mailto:contactus@nicescale.com">contactus@nicescale.com</a></li></ul><br />
+<br/><div class="aw-upload-img-list active">
+	<a href="http://dockerone.com/uploads/article/20150318/f601ab2fdc4a4d752ed2f2586d68611d.jpg" target="_blank" data-fancybox-group="thumb" rel="lightbox"><img src="http://dockerone.com/uploads/article/20150318/f601ab2fdc4a4d752ed2f2586d68611d.jpg" class="img-polaroid" title="微信-qrcode_for_gh_5f51f1b06489_258.jpg" alt="微信-qrcode_for_gh_5f51f1b06489_258.jpg" /></a>
+</div>
+																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_more_261'), $('#detail_261')); return false;">收起阅读 »</a>
+								        											</div>
+									</div>
+								</div>
+								<div class="mod-footer clearfix">
+									<span class="pull-right more-operate text-color-999">
+										石海旭 发表于 : 2015-03-18 11:51
+										<a class="text-color-999" href="http://www.dockerone.com/article/261"><i class="icon icon-comment"></i> 评论 (2)</a>
+										<a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
+											<i class="icon icon-share"></i> 分享										</a>
+										<div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+											<ul class="aw-dropdown-list">
+												<li><a onclick="AWS.User.share_out('tsina', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/261');"><i class="icon icon-weibo"></i> 微博</a></li>
+												<li><a onclick="AWS.User.share_out('qzone', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/261');"><i class="icon icon-qzone"></i> QZONE</a></li>
+												<li><a onclick="AWS.User.share_out('weixin', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/261');"><i class="icon icon-wechat"></i> 微信</a></li>
+											</ul>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+												<div class="aw-item">
+							<a class="aw-user-name hidden-xs" href="http://www.dockerone.com/people/xiaoyh">
+								<img alt="" src="http://dockerone.com/uploads/avatar/000/00/06/24_avatar_mid.jpg" />
+							</a>
+							<div class="aw-content">
+								<div class="mod-body">
+									<h2><a href="http://www.dockerone.com/article/260">Docker的优势与不足</a></h2>
+									<div class="aw-topic-bar">
+										<div class="tag-bar clearfix">
+																						<span class="topic-tag">
+												<a href="http://www.dockerone.com/topic/Docker" class="text" data-id="7">Docker</a>
+											</span>
+																					</div>
+									</div>
+									<div class="content-wrap">
+										<div class="content" id="detail_260">
+											<div class="hide-content markitup-box">
+												<br/>【编者的话】本文主要介绍一些Docker专家对应用程序容器系统的优势与不足，InfoWorld邮件采访了使用Docker的几个公司的技术领导，并整理了此文。<br />
+<br/>毫无疑问，Docker非常火热并且很多公司都已经开始使用。随着它逐渐被接受，接下来会有一段属于Docker的美好时间。<br />
+<br/>但是，关于Docker的争论也比较多，例如，Docker最擅长什么？Docker哪里不符合标准？怎样才能在不疏远现有用户和损坏已有用途的前提下让Docker更好地向前发展？下面，我们将给出一些将Docker作为自身业务的专家们对于Docker的评价。<br />
+<h3>优势</h3>别指望Steve Francia（Docker开源项目运维主管）能谈论Docker的缺点。当我们发邮件问他关于Docker最好的地方时，他说：“我觉得Docker做得最好的事情就是让开发者、用户和大家能够在任何地方非常容易地运行一个应用程序。它几乎就是开发者的圣杯，因为你既可以在你的桌面上运行一个应用程序，而且不需要任何修改，你就可以在服务器上毫无差异地运行这个相同的应用程序。这在之前是从来没有出现过的。”<br />
+<br/><a href="http://weave.works/">Weaveworks</a>的Alex Richardson赞扬了Docker的简易性。“Docker为从根本上为简化和加快软件产品的构建提供了巨大的潜力”。<br />
+<br/>StackEngine（完成了Docker的管理和自动化解决方案）的首席执行官Bob Quillin在邮件中提到Docker公司已经完成了一项很好的工作，那就是对他们的受众保持了Docker的吸引力。他写道：“Docker在对开发者提供强有力支持和将投资集中于他们的产品这些方面做的极为出色。显然，他们知道他们必须保持着这种动力，他们通过在产品功能上投入极大的努力来做到这一点。”他还提到，Docker通过“允许大家围绕他们正在建立的功能进行构建”这种方式，使得他们在开源环境中提交的东西迅速被采纳。<br />
+<br/>IT监控服务Moogsoft的创造者Rob Markovich指出，虽然容器化本身不是一个新东西，但是Docker的实施让它成为了一种新事物。“Docker考虑的是下一代虚拟化技术，用现在的话说就是轻量级虚拟化容器技术。”他在邮件中写道，“它为软件开发团队探寻快速部署代码提供了一个跨越式发展的机会。”<br />
+<h3>不足</h3>对Docker呼吁较少的原因归结于两方面：产品使用的复杂性和Docker公司之后的方向。<br />
+<br/>企业级PaaS服务机构WaveMaker的首席执行官Samir Ghosh对于Docker简化产品持续交付的复杂工序表示赞赏。但他又提到：“这不代表Docker本身是简单的。而实现Docker是复杂的，它需要很多技术的支撑，比如说，容器管理、编排、应用打包、容器间的网络、数据快照等等。”<br />
+<br/>想利用Docker做持续性交付的企业最能体会到这种苦恼，Ghosh说这对于企业来说可能会更加复杂，而且还会有不同的工作负载、各种各样的应用堆栈，异构的基础设施和有限的资源，更不用说IT企业需要的可视化、可控制和安全性。<br />
+<br/>在故障排除和分析中，复杂性也是一个问题。Markovich提到这就是Docker提供应用程序抽象的原因。“将运行在Docker上应用程序的性能问题和下层基础设施领域的性能关联起来几乎不可能。”他在邮件中说道，“IT团队将来需要可视化——一种新型的监控和分析工具，它能够将Docker生态圈中的所有东西，从应用程序到私有或者公有的基础设施关联起来。”<br />
+<br/>作为Docker的合作伙伴，Quillin最关心的是Docker未来的方向：“Docker在哪里能够挣到钱？他们的合作伙伴呢？如果Docker想要成为下一个VMware，他就需要在VMware的模式之外构建一个繁荣的合作伙伴生态圈。”<br />
+<br/>“此外，为了推动Docker的应用，尤其是在企业，Docker需要开始扮演一个市场引领者，释放更多的企业可以使用的能力，或者需要提交一个'pull request'来自行修理。”<br />
+<br/>Francia指出Docker的迅速上升给自己带来了一些困难。“Docker需要快速捕获那些明确的地方，也就是我们需要集中力量添加大量用户所期望的功能。”<br />
+<br/>他指出，其中一项功能就是需要一个GUI（图形用户界面）。他说：“现在使用Docker，你必须习惯使用命令行。现在使用Docker还没有可视化界面，都是命令行指令。我们知道如果我们真的想要做到我们设想中的成功，我们需要变得更有亲切感。因为当大部分人看到命令行的时候，他们多少会有点害怕。”<br />
+<h3>未来</h3>在最后这方面，Docker最近开始有了一定的进步。上周他们收购了Kitematic，这是一款在Mac OS X系统上为Docker提供便捷图形用户界面的产品（并且将来会在Windows实现）。另外之前也收购SocketPlane，致力于从事Docker的网络功能。<br />
+<br/>有待观察的是Docker对于自身问题所计划的解决方案将是否被采纳，或者是否别的公司，例如Red Hat，将会为那些对于芯片不再下滑而迫不及待的企业顾客们提供一套更加直接而有效的解决方案。<br />
+<br/>“好的技术是需要努力和时间来建设的。”Richardson说道，“最大的危险在于期望被无休止地拖延，最终顾客变得非常失望。”<br />
+<br/><strong>原文链接：<a href="http://www.infoworld.com/article/2896895/application-virtualization/best-and-worst-about-docker.html">Revealed: The best and worst of Docker</a> （翻译: <a href="http://www.dockerone.com/people/xiaoyh">肖远昊</a> 校对：李颖杰）</strong><br />
+<br/>＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝<br /><br />
+译者介绍<br /><br />
+肖远昊，硕士研究生，就读于北京航空航天大学计算机学院ACT实验室，目前从事虚拟化、云计算方向的研究。希望通过<a href="http://dockerone.com/">DockerOne</a>与大家一起交流和学习Docker。
+											</div>
+
+																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_260'), $('#detail_more_260')); return false;">继续阅读 »</a>
+								        											</div>
+
+										<div class="content markitup-box hide" id="detail_more_260">
+											<br/>【编者的话】本文主要介绍一些Docker专家对应用程序容器系统的优势与不足，InfoWorld邮件采访了使用Docker的几个公司的技术领导，并整理了此文。<br />
+<br/>毫无疑问，Docker非常火热并且很多公司都已经开始使用。随着它逐渐被接受，接下来会有一段属于Docker的美好时间。<br />
+<br/>但是，关于Docker的争论也比较多，例如，Docker最擅长什么？Docker哪里不符合标准？怎样才能在不疏远现有用户和损坏已有用途的前提下让Docker更好地向前发展？下面，我们将给出一些将Docker作为自身业务的专家们对于Docker的评价。<br />
+<h3>优势</h3>别指望Steve Francia（Docker开源项目运维主管）能谈论Docker的缺点。当我们发邮件问他关于Docker最好的地方时，他说：“我觉得Docker做得最好的事情就是让开发者、用户和大家能够在任何地方非常容易地运行一个应用程序。它几乎就是开发者的圣杯，因为你既可以在你的桌面上运行一个应用程序，而且不需要任何修改，你就可以在服务器上毫无差异地运行这个相同的应用程序。这在之前是从来没有出现过的。”<br />
+<br/><a href="http://weave.works/">Weaveworks</a>的Alex Richardson赞扬了Docker的简易性。“Docker为从根本上为简化和加快软件产品的构建提供了巨大的潜力”。<br />
+<br/>StackEngine（完成了Docker的管理和自动化解决方案）的首席执行官Bob Quillin在邮件中提到Docker公司已经完成了一项很好的工作，那就是对他们的受众保持了Docker的吸引力。他写道：“Docker在对开发者提供强有力支持和将投资集中于他们的产品这些方面做的极为出色。显然，他们知道他们必须保持着这种动力，他们通过在产品功能上投入极大的努力来做到这一点。”他还提到，Docker通过“允许大家围绕他们正在建立的功能进行构建”这种方式，使得他们在开源环境中提交的东西迅速被采纳。<br />
+<br/>IT监控服务Moogsoft的创造者Rob Markovich指出，虽然容器化本身不是一个新东西，但是Docker的实施让它成为了一种新事物。“Docker考虑的是下一代虚拟化技术，用现在的话说就是轻量级虚拟化容器技术。”他在邮件中写道，“它为软件开发团队探寻快速部署代码提供了一个跨越式发展的机会。”<br />
+<h3>不足</h3>对Docker呼吁较少的原因归结于两方面：产品使用的复杂性和Docker公司之后的方向。<br />
+<br/>企业级PaaS服务机构WaveMaker的首席执行官Samir Ghosh对于Docker简化产品持续交付的复杂工序表示赞赏。但他又提到：“这不代表Docker本身是简单的。而实现Docker是复杂的，它需要很多技术的支撑，比如说，容器管理、编排、应用打包、容器间的网络、数据快照等等。”<br />
+<br/>想利用Docker做持续性交付的企业最能体会到这种苦恼，Ghosh说这对于企业来说可能会更加复杂，而且还会有不同的工作负载、各种各样的应用堆栈，异构的基础设施和有限的资源，更不用说IT企业需要的可视化、可控制和安全性。<br />
+<br/>在故障排除和分析中，复杂性也是一个问题。Markovich提到这就是Docker提供应用程序抽象的原因。“将运行在Docker上应用程序的性能问题和下层基础设施领域的性能关联起来几乎不可能。”他在邮件中说道，“IT团队将来需要可视化——一种新型的监控和分析工具，它能够将Docker生态圈中的所有东西，从应用程序到私有或者公有的基础设施关联起来。”<br />
+<br/>作为Docker的合作伙伴，Quillin最关心的是Docker未来的方向：“Docker在哪里能够挣到钱？他们的合作伙伴呢？如果Docker想要成为下一个VMware，他就需要在VMware的模式之外构建一个繁荣的合作伙伴生态圈。”<br />
+<br/>“此外，为了推动Docker的应用，尤其是在企业，Docker需要开始扮演一个市场引领者，释放更多的企业可以使用的能力，或者需要提交一个'pull request'来自行修理。”<br />
+<br/>Francia指出Docker的迅速上升给自己带来了一些困难。“Docker需要快速捕获那些明确的地方，也就是我们需要集中力量添加大量用户所期望的功能。”<br />
+<br/>他指出，其中一项功能就是需要一个GUI（图形用户界面）。他说：“现在使用Docker，你必须习惯使用命令行。现在使用Docker还没有可视化界面，都是命令行指令。我们知道如果我们真的想要做到我们设想中的成功，我们需要变得更有亲切感。因为当大部分人看到命令行的时候，他们多少会有点害怕。”<br />
+<h3>未来</h3>在最后这方面，Docker最近开始有了一定的进步。上周他们收购了Kitematic，这是一款在Mac OS X系统上为Docker提供便捷图形用户界面的产品（并且将来会在Windows实现）。另外之前也收购SocketPlane，致力于从事Docker的网络功能。<br />
+<br/>有待观察的是Docker对于自身问题所计划的解决方案将是否被采纳，或者是否别的公司，例如Red Hat，将会为那些对于芯片不再下滑而迫不及待的企业顾客们提供一套更加直接而有效的解决方案。<br />
+<br/>“好的技术是需要努力和时间来建设的。”Richardson说道，“最大的危险在于期望被无休止地拖延，最终顾客变得非常失望。”<br />
+<br/><strong>原文链接：<a href="http://www.infoworld.com/article/2896895/application-virtualization/best-and-worst-about-docker.html">Revealed: The best and worst of Docker</a> （翻译: <a href="http://www.dockerone.com/people/xiaoyh">肖远昊</a> 校对：李颖杰）</strong><br />
+<br/>＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝<br /><br />
+译者介绍<br /><br />
+肖远昊，硕士研究生，就读于北京航空航天大学计算机学院ACT实验室，目前从事虚拟化、云计算方向的研究。希望通过<a href="http://dockerone.com/">DockerOne</a>与大家一起交流和学习Docker。																			        	<a class="more" href="#" onclick="AWS.content_switcher($('#detail_more_260'), $('#detail_260')); return false;">收起阅读 »</a>
+								        											</div>
+									</div>
+								</div>
+								<div class="mod-footer clearfix">
+									<span class="pull-right more-operate text-color-999">
+										xiaoyh 发表于 : 2015-03-17 14:25
+										<a class="text-color-999" href="http://www.dockerone.com/article/260"><i class="icon icon-comment"></i> 评论 (1)</a>
+										<a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
+											<i class="icon icon-share"></i> 分享										</a>
+										<div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+											<ul class="aw-dropdown-list">
+												<li><a onclick="AWS.User.share_out('tsina', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/260');"><i class="icon icon-weibo"></i> 微博</a></li>
+												<li><a onclick="AWS.User.share_out('qzone', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/260');"><i class="icon icon-qzone"></i> QZONE</a></li>
+												<li><a onclick="AWS.User.share_out('weixin', $(this).parents('.aw-item').find('h2').text(), 'http://www.dockerone.com/article/260');"><i class="icon icon-wechat"></i> 微信</a></li>
+											</ul>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+						
+						<div class="page-control"><ul class="pagination pull-right"><li class="active"><a href="javascript:;">1</a></li><li><a href="http://www.dockerone.com/article/page-2">2</a></li><li><a href="http://www.dockerone.com/article/page-3">3</a></li><li><a href="http://www.dockerone.com/article/page-4">4</a></li><li><a href="http://www.dockerone.com/article/page-2">&gt;</a></li><li><a href="http://www.dockerone.com/article/page-26">&gt;&gt;</a></li></ul></div>
+											</div>
+					<!-- end 文章列表 -->
+				</div>
+				<!-- 侧边栏 -->
+				<div class="col-sm-3 col-md-3 aw-side-bar hidden-xs hidden-sm">
+					<!-- 热门文章 -->
+					<div class="aw-mod aw-text-align-justify">
+						<div class="mod-head">
+							<h3>热门文章</h3>
+						</div>
+						<div class="mod-body">
+							<ul>
+																<li><a href="http://www.dockerone.com/article/233">电子书：《Docker入门实战》</a></li>
+																<li><a href="http://www.dockerone.com/article/256">为Docker庆生：玩转Docker</a></li>
+																<li><a href="http://www.dockerone.com/article/238">一起来测试国内首家基于Docker的云平台</a></li>
+																<li><a href="http://www.dockerone.com/article/217">Docker实战：更轻松、更愉快、更高效</a></li>
+																<li><a href="http://www.dockerone.com/article/216">【实战】Docker容器资源管理</a></li>
+																<li><a href="http://www.dockerone.com/article/219">Docker的大坑小洼</a></li>
+																<li><a href="http://www.dockerone.com/article/259">Docker生态系统系列之三：服务发现和分布式配置存储</a></li>
+																<li><a href="http://www.dockerone.com/article/245">深入Docker存储驱动</a></li>
+																<li><a href="http://www.dockerone.com/article/224">Mesos vs OpenStack?谁才是私有云的未来？</a></li>
+																<li><a href="http://www.dockerone.com/article/212">Docker发布编排工具包</a></li>
+															</ul>
+						</div>
+					</div>
+					<!-- end 热门文章 -->
+					<div class="aw-mod aw-text-align-justify">
+	<div class="mod-head">
+		<a href="http://www.dockerone.com/topic/channel-hot" class="pull-right">更多 &gt;</a>
+		<h3>热门话题</h3>
+	</div>
+	<div class="mod-body">
+							<dl>
+				<dt class="pull-left aw-border-radius-5">
+					<a href="http://www.dockerone.com/topic/Docker"><img alt="" src="http://dockerone.com/uploads/topic/20141111/050f70edba1bf6b735e989360b16e1f5_50_50.png" /></a>
+				</dt>
+				<dd class="pull-left">
+					<p class="clearfix">
+						<span class="topic-tag">
+							<a href="http://www.dockerone.com/topic/Docker" class="text" data-id="7">Docker</a>
+						</span>
+					</p>
+					<p><b>245</b> 个问题, <b>105</b> 人关注</p>
+				</dd>
+			</dl>
+					<dl>
+				<dt class="pull-left aw-border-radius-5">
+					<a href="http://www.dockerone.com/topic/Docker Tutorial"><img alt="" src="http://dockerone.com/uploads/topic/20141228/720e45b3ed69c16f4d0a1dc7a14e45d5_50_50.jpg" /></a>
+				</dt>
+				<dd class="pull-left">
+					<p class="clearfix">
+						<span class="topic-tag">
+							<a href="http://www.dockerone.com/topic/Docker Tutorial" class="text" data-id="42">Docker Tutorial</a>
+						</span>
+					</p>
+					<p><b>26</b> 个问题, <b>35</b> 人关注</p>
+				</dd>
+			</dl>
+					<dl>
+				<dt class="pull-left aw-border-radius-5">
+					<a href="http://www.dockerone.com/topic/Linux"><img alt="" src="http://dockerone.com/uploads/topic/20141225/13e1d9d98bd6ceda9b5324b2e67fa655_50_50.jpg" /></a>
+				</dt>
+				<dd class="pull-left">
+					<p class="clearfix">
+						<span class="topic-tag">
+							<a href="http://www.dockerone.com/topic/Linux" class="text" data-id="30">Linux</a>
+						</span>
+					</p>
+					<p><b>6</b> 个问题, <b>26</b> 人关注</p>
+				</dd>
+			</dl>
+					<dl>
+				<dt class="pull-left aw-border-radius-5">
+					<a href="http://www.dockerone.com/topic/命名空间"><img alt="" src="http://dockerone.com/uploads/topic/20141226/44f119bf6e759cb34942c118b07d6d02_50_50.jpg" /></a>
+				</dt>
+				<dd class="pull-left">
+					<p class="clearfix">
+						<span class="topic-tag">
+							<a href="http://www.dockerone.com/topic/命名空间" class="text" data-id="29">命名空间</a>
+						</span>
+					</p>
+					<p><b>5</b> 个问题, <b>14</b> 人关注</p>
+				</dd>
+			</dl>
+					<dl>
+				<dt class="pull-left aw-border-radius-5">
+					<a href="http://www.dockerone.com/topic/Touchware"><img alt="" src="http://dockerone.com/uploads/topic/20150202/554a87140614d12d6ccbc02f6d56ebd3_50_50.png" /></a>
+				</dt>
+				<dd class="pull-left">
+					<p class="clearfix">
+						<span class="topic-tag">
+							<a href="http://www.dockerone.com/topic/Touchware" class="text" data-id="95">Touchware</a>
+						</span>
+					</p>
+					<p><b>4</b> 个问题, <b>5</b> 人关注</p>
+				</dd>
+			</dl>
+					</div>
+</div>
+				</div>
+				<!-- end 侧边栏 -->
+			</div>
+		</div>
+	</div>
+</div>
+
+	
+<footer class="footer">
+  <div class="subscribe-email row1 text-center">
+    <h3>DockerOne，最专业的Docker交流平台</h3>
+    <p>关注Docker相关的产品以及开源项目</p>
+      </div>
+  <div class="row1">
+    <div class="copyright">
+      <p> 2014 <strong>DockerOne</strong>. All Rights Reserved.</p>
+      <p class="">DockerOne，新圈子，新思路，新视野。</p>
+<p class="zz">本网站服务器由<a href="http://www.ucloud.cn/">UCloud云服务</a>提供。</p>
+    </div>
+
+    <div class="footer-follow">
+      <ul class="cf">
+        <li><a class="icons-weibo" href="http://weibo.com/dockerone" title="Weibo" target="_blank">Weibo</a></li>
+        <li style="position:relative"><a class="icons-twitter" onmouseover="mousemethod('block','img1')" onmouseout="mousemethod('none','img1')" title="Wechat" target="_blank" style="cursor:pointer;">Wechat</a><img src="http://static.dockerone.com/logo/wechat.jpg" width="100" style="position:absolute; top:37px; left:-32px; display:none;" id="img1"/></li>
+<li><a class="icons-weekly" href="http://weekly.dockerone.com" title="周报" target="_blank">周报</a></li>
+ <li><a class="icons-rss" href="http://dockerone.com/feed" title="Feed" target="_blank">Feed</a></li>
+      </ul>
+    </div>
+    <script>
+	function mousemethod(op,imgid){
+	document.getElementById(imgid).style.display=op;
+	}
+</script>
+  </div>
+
+</footer>
+
+
+<a class="aw-back-top hidden-xs" href="javascript:;" onclick="$.scrollTo(1, 600, {queue:true});"><i class="icon icon-up"></i></a>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F1f6d1a718ac6b6eb3902c92775fb128e' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<!-- DO NOT REMOVE -->
+<div id="aw-ajax-box" class="aw-ajax-box"></div>
+<div style="display:none;" id="__crond">
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#__crond').html(unescape('%3Cimg%20src%3D%22' + G_BASE_URL + '/crond/run/1427296419%22%20width%3D%221%22%20height%3D%221%22%20/%3E'));
+		});
+	</script>
+</div>
+
+<!-- Escape time: 0.22930192947388 --><!-- / DO NOT REMOVE -->
+
+</body>
+</html>
