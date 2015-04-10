@@ -14,3 +14,5 @@ for index in range(column):
 		soup  = bs4.BeautifulSoup(response.text)
 		title = soup.select('title')[0].get_text()
 		print title + '  ' + response.url
+
+
